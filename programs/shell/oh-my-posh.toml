@@ -1,0 +1,74 @@
+version = 2
+final_space = true
+console_title_template = '{{ .Shell }} in {{ .Folder }}'
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+
+  [[blocks.segments]]
+    type = 'session'
+    style = 'powerline'
+    background = 'lightMagenta'
+    foreground = 'black'
+
+  [[blocks.segments]]
+    type = 'path'
+    style = 'powerline'
+    powerline_symbol = ''
+    background = 'blue'
+    foreground = 'white'
+
+    [blocks.segments.properties]
+      style = 'full'
+      right_format = '<b>%s</b>'
+
+  [[blocks.segments]]
+    type = 'git'
+    style = 'powerline'
+    powerline_symbol = ''
+    background = 'green'
+    background_templates = [
+      "{{ if or (.Working.Changed) (.Staging.Changed) }}orange{{ end }}",
+    ]
+    foreground = 'black'
+
+    [blocks.segments.properties]
+      fetch_status = false
+      branch_icon = ' '
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'right'
+
+  [[blocks.segments]]
+    type = 'python'
+    style = 'powerline'
+    powerline_symbol = ''
+    background = 'blue'
+    foreground = 'black'
+    template = ' {{ .Venv }} '
+
+  [[blocks.segments]]
+    type = 'golang'
+    style = 'powerline'
+    powerline_symbol = ''
+    background = 'blue'
+    foreground = 'black'
+    template = ' '
+
+[[blocks]]
+  type = 'prompt'
+  alignment = 'left'
+  newline = true
+
+  [[blocks.segments]]
+    type = 'text'
+    background = 'transparent'
+    foreground = 'green'
+    template = '❯'
+
+[transient_prompt]
+  background = 'transparent'
+  foreground = 'green'
+  template = '❯ '

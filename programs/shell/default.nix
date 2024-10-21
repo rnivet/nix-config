@@ -6,13 +6,13 @@
   ];
 
   home.file = {
-    ".config/oh-my-posh/config.toml".source = ./oh-my-posh.toml;
+    ".config/oh-my-posh/config.toml".source = ./oh-my-posh.yml;
   };
 
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
-    initExtra = "eval \"$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/config.toml)\"";
+    initExtra = "eval \"$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/oh-my-posh.yml)\"";
     oh-my-zsh = {
       enable = true;
       extraConfig = "zstyle ':omz:update' mode auto";

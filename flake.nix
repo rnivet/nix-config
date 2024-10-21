@@ -24,7 +24,7 @@
 
         # Optionally use extraSpecialArgs
         # to pass through arguments to home.nix
-	extraSpecialArgs = { env = import ./env/perso.nix; };
+        extraSpecialArgs = { env = import ./env/perso.nix; };
       };
     };
 }

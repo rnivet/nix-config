@@ -26,3 +26,7 @@ $ home-manager switch -b before-home-manager
 ```
 $ nix flake update
 ```
+## Install config on Darwin after a modification
+```
+$ darwin-rebuild switch --flake ~/.config/nix
+```

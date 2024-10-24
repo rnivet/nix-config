@@ -1,0 +1,3 @@
+[
+  ../programs/ansible.nix
+]

@@ -11,20 +11,28 @@
   };
 
   outputs = { nixpkgs, home-manager, ... }:
-    let
-      system = "x86_64-linux";
-      pkgs = nixpkgs.legacyPackages.${system};
-    in {
-      homeConfigurations."ubuntu" = home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
+  {
+    homeConfigurations."ubuntu@ubu-1" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
 
-        # Specify your home configuration modules here, for example,
-        # the path to your home.nix.
-        modules = [ ./home.nix ];
+      # Specify your home configuration modules here, for example,
+      # the path to your home.nix.
+      modules = [ ./home.nix ];
 
-        # Optionally use extraSpecialArgs
-        # to pass through arguments to home.nix
-        extraSpecialArgs = { env = import ./env/perso.nix; };
-      };
+      # Optionally use extraSpecialArgs
+      # to pass through arguments to home.nix
+      extraSpecialArgs = { hostConf = import ./hosts/ubu-1.nix; };
     };
+    homeConfigurations."remi@test-home-manager" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages."aarch64-linux";
+
+      # Specify your home configuration modules here, for example,
+      # the path to your home.nix.
+      modules = [ ./home.nix ];
+
+      # Optionally use extraSpecialArgs
+      # to pass through arguments to home.nix
+      extraSpecialArgs = { hostConf = import ./hosts/test-home-manager.nix; };
+    };
+  };
 }

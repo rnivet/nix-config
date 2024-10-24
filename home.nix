@@ -1,10 +1,10 @@
-{ config, pkgs, env, ... }:
+{ config, pkgs, hostConf, ... }:
 
 {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
-  home.username = "ubuntu";
-  home.homeDirectory = "/home/ubuntu";
+  home.username = hostConf.username;
+  home.homeDirectory = hostConf.homedir;
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -74,9 +74,5 @@
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;
 
-  imports = [
-    ./programs/shell
-    ./programs/neovim
-    ./programs/git.nix
-  ];
+  imports = hostConf.roles;
 }

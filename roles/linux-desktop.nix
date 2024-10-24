@@ -1,0 +1,3 @@
+[
+  ../programs/hyprland.nix
+]

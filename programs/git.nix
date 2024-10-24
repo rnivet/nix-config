@@ -1,9 +1,9 @@
-{ pkgs, env, ... }:
+{ pkgs, hostConf, ... }:
 {
   programs.git = {
     enable = true;
-    userName = env.name;
-    userEmail = env.email;
+    userName = hostConf.name;
+    userEmail = hostConf.email;
   };
 
   programs.lazygit.enable = true;

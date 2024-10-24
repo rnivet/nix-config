@@ -1,6 +1,5 @@
-{ pkgs, ... }:
-let
-  treesitterWithGrammars = (pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
+{pkgs, ...}: let
+  treesitterWithGrammars = pkgs.vimPlugins.nvim-treesitter.withPlugins (p: [
     p.bash
     p.comment
     p.css
@@ -27,14 +26,13 @@ let
     p.vue
     p.yaml
     p.regex
-  ]));
+  ]);
 
   treesitter-parsers = pkgs.symlinkJoin {
     name = "treesitter-parsers";
     paths = treesitterWithGrammars.dependencies;
   };
-in
-{
+in {
   home.packages = with pkgs; [
     ripgrep
 
@@ -73,6 +71,7 @@ in
 
     # Ansible
     ansible-language-server
+    ansible-lint
 
     # Docker
     dockerfile-language-server-nodejs

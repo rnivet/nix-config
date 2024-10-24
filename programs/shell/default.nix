@@ -1,8 +1,7 @@
-{ pkgs, ... }:
-{
+{pkgs, ...}: {
   home.packages = [
     pkgs.oh-my-posh
-    (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; })
+    (pkgs.nerdfonts.override {fonts = ["Meslo"];})
   ];
 
   home.file = {
@@ -15,8 +14,12 @@
     initExtra = "eval \"$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/config.yml)\"";
     oh-my-zsh = {
       enable = true;
-      extraConfig = "zstyle ':omz:update' mode auto";
+      extraConfig = ''
+        zstyle :omz:update mode auto
+        zstyle :omz:plugins:ssh-agent agent-forwarding yes
+      '';
       plugins = [
+        "ssh-agent"
         "git"
         "docker"
         "docker-compose"
@@ -26,7 +29,7 @@
 
   programs.atuin = {
     enable = true;
-    flags = [ "--disable-up-arrow" ];
+    flags = ["--disable-up-arrow"];
     settings = {
       filter_mode_shell_up_key_binding = "session";
       enter_accept = true;

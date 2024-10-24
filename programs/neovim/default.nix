@@ -77,6 +77,10 @@ in
     # Docker
     dockerfile-language-server-nodejs
     docker-compose-language-service
+
+    # NIX dev
+    nixd
+    alejandra
   ];
 
   programs.neovim = {

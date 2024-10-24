@@ -12,7 +12,8 @@ return {
         --html = { "prettier" },
         html = { "htmlbeautifier" },
         python = { "black" },
-        sh = { "shfmt" }
+        sh = { "shfmt" },
+        nix = { "alejandra" },
       },
       formatters = {
         goimports_reviser = {

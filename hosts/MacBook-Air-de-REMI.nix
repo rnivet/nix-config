@@ -3,5 +3,7 @@
   homedir = "/Users/remi";
   email = "rnivet@gmail.com";
   name = "Remi Nivet";
-  roles = import ../roles/dev-term.nix;
+  roles =
+    import ../roles/dev-term.nix
+    ++ import ../roles/common-desktop.nix;
 }

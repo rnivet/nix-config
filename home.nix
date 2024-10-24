@@ -1,6 +1,9 @@
-{ config, pkgs, hostConf, ... }:
-
 {
+  config,
+  pkgs,
+  hostConf,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = hostConf.username;

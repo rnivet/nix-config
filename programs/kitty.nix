@@ -15,6 +15,7 @@
       "cmd+left" = "previous_tab";
     };
     settings = {
+      term = "xterm-256color";
       active_tab_background = "lightGreen";
       color7 = "#ffffff";
       foreground = "#ffffff";

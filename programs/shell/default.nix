@@ -51,7 +51,21 @@
     # };
     prezto = {
       enable = true;
-      terminal.autoTitle = true;
+      pmodules = [
+        "environment"
+        "terminal"
+        "editor"
+        "history"
+        "directory"
+        "spectrum"
+        "git"
+        "utility"
+        "completion"
+        "prompt"
+        "ssh"
+      ];
+      terminal.autoTitle = null;
+      # terminal.tabTitleFormat = "%m: %s";
     };
   };
 

@@ -30,6 +30,7 @@
           home-manager.useGlobalPkgs = true;
           home-manager.useUserPackages = true;
           home-manager.users.remi = import ./home.nix;
+          home-manager.backupFileExtension = "before-nix";
           home-manager.extraSpecialArgs = {hostConf = import ./hosts/MacBook-Air-de-REMI.nix;};
         }
       ];

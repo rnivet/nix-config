@@ -10,6 +10,10 @@
       size = 14.5;
     };
     themeFile = "tokyo_night_storm";
+    keybindings = {
+      "cmd+right" = "next_tab";
+      "cmd+left" = "previous_tab";
+    };
     settings = {
       active_tab_background = "lightGreen";
       color7 = "#ffffff";
@@ -20,7 +24,9 @@
       tab_bar_edge = "top";
       tab_bar_style = "powerline";
       tab_bar_align = "left";
-      tab_title_template = "{tab.active_wd}";
+      # tab_title_template = "{tab.active_wd}";
+      tab_title_template = "{title}";
+      tab_bar_min_tabs = 1;
     };
   };
 }

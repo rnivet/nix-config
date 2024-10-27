@@ -36,18 +36,22 @@
       zellij_tab_name_update
       chpwd_functions+=(zellij_tab_name_update)
     '';
-    oh-my-zsh = {
+    # oh-my-zsh = {
+    #   enable = true;
+    #   extraConfig = ''
+    #     zstyle :omz:update mode auto
+    #     zstyle :omz:plugins:ssh-agent agent-forwarding yes
+    #   '';
+    #   plugins = [
+    #     "ssh-agent"
+    #     "git"
+    #     "docker"
+    #     "docker-compose"
+    #   ];
+    # };
+    prezto = {
       enable = true;
-      extraConfig = ''
-        zstyle :omz:update mode auto
-        zstyle :omz:plugins:ssh-agent agent-forwarding yes
-      '';
-      plugins = [
-        "ssh-agent"
-        "git"
-        "docker"
-        "docker-compose"
-      ];
+      terminal.autoTitle = true;
     };
   };
 

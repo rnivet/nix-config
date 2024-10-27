@@ -20,7 +20,7 @@ blocks:
     properties:
       style: full
       right_format: "<b>%s</b>"
-    background: blue
+    background: lightBlue
     foreground: white
   - type: git
     style: powerline

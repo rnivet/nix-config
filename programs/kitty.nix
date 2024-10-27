@@ -16,6 +16,7 @@
     };
     settings = {
       term = "xterm-256color";
+      allow_remote_control = "yes";
       active_tab_background = "lightGreen";
       color7 = "#ffffff";
       foreground = "#ffffff";
@@ -30,4 +31,27 @@
       tab_bar_min_tabs = 1;
     };
   };
+
+  programs.zsh.initExtra = ''
+    # Update kitty tab name automatically
+    kitty_tab_name_update() {
+      if [[ -n $KITTY_PID ]]; then
+        tab_name=""
+        if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
+          tab_name+=$(basename "$(git rev-parse --show-toplevel)")/
+          tab_name=''${tab_name%/}
+        else
+          tab_name=$PWD
+          if [[ $tab_name == $HOME ]]; then
+            tab_name="~"
+          else
+            tab_name=''${tab_name##*/}
+          fi
+        fi
+        command nohup kitten @ set-tab-title --match state:focused $tab_name >/dev/null 2>&1
+      fi
+    }
+    kitty_tab_name_update
+    chpwd_functions+=(kitty_tab_name_update)
+  '';
 }

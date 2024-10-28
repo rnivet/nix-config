@@ -63,6 +63,7 @@
         "completion"
         "prompt"
         "ssh"
+        "docker"
       ];
       terminal.autoTitle = null;
       # terminal.tabTitleFormat = "%m: %s";
@@ -78,11 +79,13 @@
     };
   };
 
-  programs.zellij = {
-    enable = true;
-    enableZshIntegration = false;
-    settings = {
-      theme = "tokyo-night";
-    };
-  };
+  # programs.zellij = {
+  #   enable = true;
+  #   enableZshIntegration = false;
+  #   settings = {
+  #     theme = "tokyo-night";
+  #     keybinds.normal.unbind = "Ctrl b";
+  #     keybinds.tab.bind."Ctrl t".SwitchToMode = "Normal";
+  #   };
+  # };
 }

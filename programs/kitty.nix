@@ -1,7 +1,6 @@
 {
   config,
   pkgs,
-  hostConf,
   ...
 }: {
   programs.kitty = {

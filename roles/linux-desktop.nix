@@ -1,3 +1,3 @@
 [
-  ../programs/hyprland.nix
+  ../programs/kitty.nix
 ]

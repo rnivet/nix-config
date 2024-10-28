@@ -1,10 +1,12 @@
 {
+  config,
   pkgs,
   hostConf,
   ...
 }: {
   programs.kitty = {
     enable = true;
+    package = config.lib.nixGL.wrap pkgs.kitty;
     font = {
       name = "MesloLGS Nerd Font Mono";
       size = 14.5;

@@ -2,6 +2,7 @@
   config,
   pkgs,
   hostConf,
+  nixgl,
   ...
 }: {
   # Home Manager needs a bit of information about you and the paths it should
@@ -78,6 +79,11 @@
   programs.home-manager.enable = true;
 
   targets.genericLinux.enable = true;
+
+  nixGL.packages = nixgl.packages;
+  nixGL.defaultWrapper = "mesa";
+  nixGL.offloadWrapper = "nvidiaPrime";
+  nixGL.installScripts = ["mesa" "nvidiaPrime"];
 
   imports = hostConf.roles;
 }

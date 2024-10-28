@@ -8,5 +8,9 @@
     wget
     dos2unix
     jq
+    btop
+    ripgrep
+    fzf
+    unzip
   ];
 }

@@ -297,5 +297,11 @@ return {
       capabilities = capabilities,
       on_attach = on_attach,
     })
+    --
+    -- Configure Helm language server
+    lspconfig.helm_ls.setup({
+      capabilities = capabilities,
+      on_attach = on_attach,
+    })
   end,
 }

@@ -26,6 +26,7 @@
     p.vue
     p.yaml
     p.regex
+    p.helm
   ]);
 
   treesitter-parsers = pkgs.symlinkJoin {
@@ -80,6 +81,9 @@ in {
     # NIX dev
     nixd
     alejandra
+
+    # HELM charts dev
+    helm-ls
   ];
 
   programs.neovim = {

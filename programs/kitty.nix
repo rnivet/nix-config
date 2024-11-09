@@ -18,6 +18,7 @@
     };
     settings = {
       term = "xterm-256color";
+      macos_option_as_alt = "yes";
       allow_remote_control = "yes";
       active_tab_background = "lightGreen";
       color7 = "#ffffff";

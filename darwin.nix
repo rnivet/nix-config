@@ -1,19 +1,12 @@
-{
-  pkgs,
-  config,
-  ...
-}: {
+{pkgs, ...}: {
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  # environment.systemPackages =
-  #   [
-  #       pkgs.alacritty
-  #       pkgs.btop
-  #       pkgs.mkalias
-  #   ];
-  #
+  environment.systemPackages = [
+    pkgs.kitty
+  ];
+
   # fonts.packages = [
   #   (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; })
   # ];

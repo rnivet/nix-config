@@ -4,7 +4,7 @@
   ...
 }: {
   programs.alacritty = {
-    enable = true;
+    enable = false;
     settings = {
       working_directory = hostConf.homedir + "/projects";
       window = {

@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = [
     pkgs.oh-my-posh
-    (pkgs.nerdfonts.override {fonts = ["Meslo"];})
+    pkgs.nerd-fonts.meslo-lg
   ];
 
   home.file = {

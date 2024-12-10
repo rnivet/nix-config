@@ -1,5 +1,4 @@
-{ pkgs, hostConf, ... }:
-{
+{hostConf, ...}: {
   programs.git = {
     enable = true;
     userName = hostConf.name;

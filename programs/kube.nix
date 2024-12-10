@@ -8,4 +8,9 @@
   programs.zsh.initExtra = ''
     eval "$(kubectl completion zsh)"
   '';
+
+  programs.kubecolor = {
+    enable = true;
+    enableAlias = true;
+  };
 }

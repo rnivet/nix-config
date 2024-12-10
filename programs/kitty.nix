@@ -7,6 +7,7 @@
     enable = true;
     package = config.lib.nixGL.wrap pkgs.kitty;
     font = {
+      package = pkgs.nerd-fonts.meslo-lg;
       name = "MesloLGS Nerd Font Mono";
       size = 14.5;
     };

@@ -5,5 +5,6 @@
   name = "Remi Nivet";
   roles =
     import ../roles/common-dev.nix
+    ++ [../programs/dotnet.nix]
     ++ [../programs/kube.nix];
 }

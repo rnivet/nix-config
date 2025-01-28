@@ -1,8 +1,4 @@
-{
-  pkgs,
-  hostConf,
-  ...
-}: {
+{pkgs, ...}: {
   home.packages = with pkgs; [
     curl
     wget
@@ -13,5 +9,6 @@
     fzf
     unzip
     bat
+    lazydocker
   ];
 }

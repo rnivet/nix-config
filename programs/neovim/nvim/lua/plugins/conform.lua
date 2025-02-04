@@ -22,11 +22,15 @@ return {
           stdin = false,
         },
       },
-      format_on_save = {
-        lsp_fallback = true,
-        async = false,
-        timeout_ms = 500,
-      }
+      format_on_save = function(bufnr)
+        -- Disable autoformat on certain filetypes
+        local ignore_filetypes = { "cs" }
+        if vim.tbl_contains(ignore_filetypes, vim.bo[bufnr].filetype) then
+          return
+        end
+        -- ...additional logic...
+        return { async = false, timeout_ms = 500, lsp_format = "fallback" }
+      end
     })
 
     vim.keymap.set({ "n", "v" }, "<leader>f", function()

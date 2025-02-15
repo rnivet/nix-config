@@ -32,7 +32,7 @@ return {
 
       -- set keybinds
       opts.desc = "Show LSP finder"
-      keymap.set("n", "gf", "<cmd>Lspsaga finder def+ref+imp<CR>", opts) -- show definition, references
+      keymap.set("n", "gf", "<cmd>Lspsaga finder def+imp+ref<CR>", opts) -- show definition, references
 
       opts.desc = "Show LSP references"
       keymap.set("n", "gR", "<cmd>Lspsaga finder ref<CR>", opts) -- show definition, references

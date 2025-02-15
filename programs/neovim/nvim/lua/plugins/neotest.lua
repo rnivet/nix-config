@@ -6,13 +6,15 @@ return {
     "nvim-lua/plenary.nvim",
     "antoinemadec/FixCursorHold.nvim",
     "nvim-neotest/neotest-go",
-    "nvim-neotest/neotest-python"
+    "nvim-neotest/neotest-python",
+    "Issafalcon/neotest-dotnet"
   },
   config = function()
     require("neotest").setup({
       adapters = {
         require("neotest-go"),
         require("neotest-python"),
+        require("neotest-dotnet"),
       }
     })
     vim.keymap.set("n", "to", "<cmd>Neotest output<CR>",

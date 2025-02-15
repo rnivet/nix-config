@@ -4,6 +4,14 @@
     name = "treesitter-parsers";
     paths = treesitterWithGrammars.dependencies;
   };
+  inherit
+    (
+      (builtins.getFlake "github:konradmalik/nixpkgs/1cd039866ff4728d85430ba66af60ba790a4789b")
+      .legacyPackages
+      .${pkgs.system}
+    )
+    roslyn-ls
+    ;
 in {
   home.packages = with pkgs; [
     ripgrep
@@ -40,6 +48,7 @@ in {
 
     # DOTNET dev
     omnisharp-roslyn
+    roslyn-ls
 
     # Ansible
     ansible-language-server

@@ -26,8 +26,9 @@ return {
 
     local keymap = vim.keymap -- for conciseness
 
-    local opts = { noremap = true, silent = true }
     local on_attach = function(_, bufnr)
+      -- Set LSP keymaps
+      local opts = { noremap = true, silent = true }
       opts.buffer = bufnr
 
       -- set keybinds
@@ -75,6 +76,16 @@ return {
 
       opts.desc = "Restart LSP"
       keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
+
+      -- Activate inlay hints
+      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+
+      -- Activate codelens
+      vim.lsp.codelens.refresh()
+      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+        buffer = bufnr,
+        callback = vim.lsp.codelens.refresh,
+      })
     end
 
     -- Add nvim-ufo folding capabilities
@@ -325,6 +336,10 @@ return {
           },
           ["csharp|code_lens"] = {
             dotnet_enable_references_code_lens = true,
+          },
+          ["csharp|completion"] = {
+            dotnet_show_completion_items_from_unimported_namespaces = true,
+            dotnet_show_name_completion_suggestions = true,
           },
         },
       }

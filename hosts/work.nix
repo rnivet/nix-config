@@ -6,5 +6,6 @@
   roles =
     import ../roles/common-dev.nix
     ++ [../programs/dotnet.nix]
-    ++ [../programs/kube.nix];
+    ++ [../programs/kube.nix]
+    ++ [../programs/clang.nix];
 }

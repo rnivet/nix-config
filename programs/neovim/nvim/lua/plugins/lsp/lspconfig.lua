@@ -81,11 +81,11 @@ return {
       vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
       -- Activate codelens
-      vim.lsp.codelens.refresh()
-      vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
-        buffer = bufnr,
-        callback = vim.lsp.codelens.refresh,
-      })
+      -- vim.lsp.codelens.refresh()
+      -- vim.api.nvim_create_autocmd({ "BufEnter", "CursorHold", "InsertLeave" }, {
+      --   buffer = bufnr,
+      --   callback = vim.lsp.codelens.refresh,
+      -- })
     end
 
     -- Add nvim-ufo folding capabilities

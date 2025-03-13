@@ -1,6 +1,9 @@
-{...}: {
+{pkgs, ...}: {
   programs.kitty = {
     enable = true;
+    package = pkgs.kitty.overrideAttrs (oldAttrs: {
+      makeFlags = ["app"];
+    });
     font = {
       name = "MesloLGS Nerd Font Mono";
       size = 14.5;

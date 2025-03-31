@@ -5,5 +5,12 @@
     userEmail = hostConf.email;
   };
 
-  programs.lazygit.enable = true;
+  programs.lazygit = {
+    enable = true;
+    settings = {
+      os = {
+        edit = "vi {{filename}}";
+      };
+    };
+  };
 }

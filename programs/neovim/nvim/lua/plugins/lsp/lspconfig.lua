@@ -78,7 +78,7 @@ return {
       keymap.set("n", "<leader>rs", ":LspRestart<CR>", opts) -- mapping to restart lsp if necessary
 
       -- Activate inlay hints
-      vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
+      -- vim.lsp.inlay_hint.enable(true, { bufnr = bufnr })
 
       -- Activate codelens
       -- vim.lsp.codelens.refresh()

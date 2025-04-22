@@ -7,5 +7,6 @@
     import ../roles/common-dev.nix
     ++ [../programs/dotnet.nix]
     ++ [../programs/kube.nix]
-    ++ [../programs/clang.nix];
+    ++ [../programs/clang.nix]
+    ++ [../programs/dev-python.nix];
 }

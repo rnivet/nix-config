@@ -14,7 +14,9 @@
     ;
 in {
   home.packages = with pkgs; [
+    # Tools for Telescope
     ripgrep
+    fd
 
     # Lua dev
     lua51Packages.lua

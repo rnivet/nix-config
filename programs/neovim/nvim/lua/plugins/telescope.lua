@@ -19,7 +19,7 @@ return {
     -- telescope.load_extension("fzf")
 
     -- set keymaps
-    vim.keymap.set("n", "<leader> ", "<cmd>Telescope find_files<cr>", { desc = "Fuzzy find files in cwd" })
-    vim.keymap.set("n", "<leader>/", "<cmd>Telescope live_grep<cr>", { desc = "Find string in cwd" })
+    vim.keymap.set("n", "<leader> ", "<cmd>Telescope find_files theme=ivy<cr>", { desc = "Fuzzy find files in cwd" })
+    vim.keymap.set("n", "<leader>/", "<cmd>Telescope live_grep theme=ivy<cr>", { desc = "Find string in cwd" })
   end
 }

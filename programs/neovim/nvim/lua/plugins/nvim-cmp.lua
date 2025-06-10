@@ -10,6 +10,7 @@ return {
     "onsails/lspkind.nvim",                -- vs-code like pictograms
     "hrsh7th/cmp-nvim-lsp-signature-help", -- source for method signatures
     "hrsh7th/cmp-nvim-lua",                -- source form nvim lua
+    "GustavEikaas/easy-dotnet.nvim"
   },
   config = function()
     local cmp = require("cmp")
@@ -25,14 +26,17 @@ return {
       return col ~= 0 and vim.api.nvim_buf_get_lines(0, line - 1, line, true)[1]:sub(col, col):match("%s") == nil
     end
 
+    cmp.register_source("easy-dotnet", require("easy-dotnet").package_completion_source)
+
     cmp.setup({
       sources = cmp.config.sources({
         { name = "nvim_lua" },
         { name = "nvim_lsp" },
         -- { name = "nvim_lsp_signature_help" },
-        { name = "luasnip" }, -- snippets
-        { name = "buffer" },  -- text within current buffer
-        { name = "path" },    -- file system paths
+        { name = "luasnip" },    -- snippets
+        { name = "buffer" },     -- text within current buffer
+        { name = "path" },       -- file system paths
+        { name = "easy-dotnet" } -- dotnet pkg autocomplete
       }),
       completion = {
         completeopt = "menu,menuone,preview,noselect",

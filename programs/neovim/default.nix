@@ -14,6 +14,9 @@
     ;
 in {
   home.packages = with pkgs; [
+    # Tools for neovim
+    tree-sitter
+
     # Tools for Telescope
     ripgrep
     fd

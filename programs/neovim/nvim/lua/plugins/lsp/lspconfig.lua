@@ -315,8 +315,13 @@ return {
 
     -- Configure Roslyn language server
     require("roslyn").setup({
-      exe = 'Microsoft.CodeAnalysis.LanguageServer',
       config = {
+        cmd = {
+          "Microsoft.CodeAnalysis.LanguageServer",
+          "--logLevel=Information",
+          "--extensionLogDirectory=" .. vim.fs.dirname(vim.lsp.get_log_path()),
+          "--stdio",
+        },
         capabilities = capabilities,
         on_attach = on_attach,
         settings = {

@@ -9,7 +9,14 @@
     enable = true;
     settings = {
       os = {
-        edit = "vi {{filename}}";
+        editPreset = "nvim";
+      };
+      git = {
+        mainBranches = [
+          "main"
+          "master"
+          "develop"
+        ];
       };
     };
   };

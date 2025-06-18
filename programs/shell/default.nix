@@ -76,6 +76,7 @@
     settings = {
       filter_mode_shell_up_key_binding = "session";
       enter_accept = true;
+      search_mode = "fulltext";
     };
   };
 

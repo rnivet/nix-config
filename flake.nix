@@ -7,6 +7,7 @@
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -16,6 +17,7 @@
   outputs = {
     nixpkgs,
     nix-darwin,
+    nix-homebrew,
     home-manager,
     ...
   }: {
@@ -27,11 +29,22 @@
         ./darwin.nix
         home-manager.darwinModules.home-manager
         {
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.remi = import ./home.nix;
-          home-manager.backupFileExtension = "before-nix";
-          home-manager.extraSpecialArgs = {hostConf = import ./hosts/MacBook-Air-de-REMI.nix;};
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.remi = import ./home.nix;
+            backupFileExtension = "before-nix";
+            extraSpecialArgs = {hostConf = import ./hosts/MacBook-Air-de-REMI.nix;};
+          };
+        }
+        nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            enable = true;
+            enableRosetta = true;
+            user = "remi";
+            autoMigrate = true;
+          };
         }
       ];
     };

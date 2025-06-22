@@ -55,4 +55,24 @@
     name = "remi";
     home = "/Users/remi";
   };
+
+  # Declare primary user
+  system.primaryUser = "remi";
+
+  # Brew packages
+  homebrew = {
+    enable = true;
+    taps = [
+      "dashlane/tap"
+    ];
+    brews = [
+      "dashlane-cli"
+    ];
+    casks = [
+      "multipass"
+      "scroll-reverser"
+      "transmission"
+      "virtualbox"
+    ];
+  };
 }

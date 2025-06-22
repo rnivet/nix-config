@@ -31,7 +31,7 @@
     };
   };
 
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     # Update kitty tab name automatically
     kitty_tab_name_update() {
       host=$(hostname)

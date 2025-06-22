@@ -10,7 +10,7 @@
     enableAlias = true;
   };
 
-  programs.zsh.initExtra = ''
+  programs.zsh.initContent = ''
     eval "$(kubectl completion zsh)"
     compdef kubecolor=kubectl
   '';

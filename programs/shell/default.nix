@@ -11,7 +11,7 @@
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
-    initExtra = ''
+    initContent = ''
       # Start oh-my-posh
       eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/config.yml)"
 

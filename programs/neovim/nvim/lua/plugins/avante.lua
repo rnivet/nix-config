@@ -11,9 +11,20 @@ return {
       mistral = {
         __inherited_from = "openai",
         api_key_name = "MISTRAL_API_KEY",
-        endpoint = "https://api.mistral.ai/v1/",
-        model = "mistral-large-latest",
+        -- endpoint = "https://api.mistral.ai/v1/",
+        -- model = "mistral-large-latest",
+        endpoint = "https://codestral.mistral.ai/v1/",
+        model = "codestral-2501",
+        extra_request_body = {
+          max_tokens = 4096 -- to avoid using max_completion_tokens
+        },
       },
+    },
+    mappings = {
+      submit = {
+        normal = "<CR>",
+        insert = "<CR>",
+      }
     },
   },
   -- if you want to build from source then do `make BUILD_FROM_SOURCE=true`

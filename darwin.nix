@@ -58,10 +58,12 @@
 
   # Declare primary user
   system.primaryUser = "remi";
+  nix.settings.trusted-users = ["root" "remi"];
 
   # Brew packages
   homebrew = {
     enable = true;
+    onActivation.upgrade = true;
     taps = [
       "dashlane/tap"
     ];
@@ -70,6 +72,7 @@
     ];
     casks = [
       "multipass"
+      "onlyoffice"
       "scroll-reverser"
       "transmission"
       "virtualbox"

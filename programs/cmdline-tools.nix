@@ -1,14 +1,20 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    curl
-    wget
-    dos2unix
-    jq
-    btop
-    ripgrep
-    fzf
-    unzip
     bat
+    btop
+    curl
+    devenv
+    dos2unix
+    fzf
+    jq
     lazydocker
+    ripgrep
+    unzip
+    wget
   ];
+
+  programs.direnv = {
+    enable = true;
+    enableZshIntegration = true;
+  };
 }

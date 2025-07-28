@@ -27,9 +27,10 @@ in {
     lua-language-server
 
     # Python dev
-    python3
+    python313
+    python313Packages.pip
+    python313Packages.python-lsp-server
     pyright
-    python312Packages.python-lsp-server
     black
 
     # YAML dev

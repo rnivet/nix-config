@@ -3,13 +3,23 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nix-homebrew.url = "github:zhaofengli/nix-homebrew";
+
+    nix-homebrew = {
+      url = "github:zhaofengli/nix-homebrew";
+    };
+
     home-manager = {
       url = "github:nix-community/home-manager";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    agenix = {
+      url = "github:yaxitech/ragenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -19,6 +29,7 @@
     nix-darwin,
     nix-homebrew,
     home-manager,
+    agenix,
     ...
   }: {
     # Build darwin flake using:
@@ -32,7 +43,12 @@
           home-manager = {
             useGlobalPkgs = true;
             useUserPackages = true;
-            users.remi = import ./home.nix;
+            users.remi = {
+              imports = [
+                agenix.homeManagerModules.default
+                ./home.nix
+              ];
+            };
             backupFileExtension = "before-nix";
             extraSpecialArgs = {hostConf = import ./hosts/MacBook-Air-de-REMI.nix;};
           };

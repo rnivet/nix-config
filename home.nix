@@ -1,4 +1,10 @@
-{hostConf, ...}: {
+{
+  config,
+  hostConf,
+  pkgs,
+  lib,
+  ...
+}: {
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = hostConf.username;
@@ -32,6 +38,7 @@
     # (pkgs.writeShellScriptBin "my-hello" ''
     #   echo "Hello, ${config.home.username}!"
     # '')
+    pkgs.ragenix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
@@ -47,6 +54,15 @@
     #   org.gradle.console=verbose
     #   org.gradle.daemon.idletimeout=3600000
     # '';
+  };
+
+  age = {
+    identityPaths = ["${hostConf.homedir}/.ssh/id_agenix"];
+    secrets = {
+      codestral_token = {
+        file = ./secrets/codestral_token.age;
+      };
+    };
   };
 
   # Home Manager can also manage your environment variables through
@@ -66,7 +82,7 @@
   #  /etc/profiles/per-user/ubuntu/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    # EDITOR = "emacs";
+    CODESTRAL_API_KEY = "`cat ${config.age.secrets.codestral_token.path}`";
   };
 
   # Let Home Manager install and manage itself.

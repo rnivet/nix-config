@@ -3,8 +3,9 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = [
-    pkgs.kitty
+  environment.systemPackages = with pkgs; [
+    kitty
+    alacritty
   ];
 
   # fonts.packages = [
@@ -63,7 +64,10 @@
   # Brew packages
   homebrew = {
     enable = true;
-    onActivation.upgrade = true;
+    onActivation = {
+      autoUpdate = true;
+      upgrade = true;
+    };
     taps = [
       "dashlane/tap"
     ];
@@ -71,11 +75,9 @@
       "dashlane-cli"
     ];
     casks = [
-      "multipass"
       "onlyoffice"
       "scroll-reverser"
       "transmission"
-      "virtualbox"
     ];
   };
 }

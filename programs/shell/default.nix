@@ -80,13 +80,18 @@
     };
   };
 
-  # programs.zellij = {
-  #   enable = true;
-  #   enableZshIntegration = false;
-  #   settings = {
-  #     theme = "tokyo-night";
-  #     keybinds.normal.unbind = "Ctrl b";
-  #     keybinds.tab.bind."Ctrl t".SwitchToMode = "Normal";
-  #   };
-  # };
+  programs.zellij = {
+    enable = true;
+    enableZshIntegration = true;
+    settings = {
+      theme = "tokyo-night";
+      pane_frames = true;
+      default_layout = "compact";
+      keybinds.normal.unbind = "Ctrl b";
+      keybinds.locked."bind \"Ctrl g\"".SwitchToMode = "Normal";
+      keybinds.tab."bind \"Ctrl t\"".SwitchToMode = "Normal";
+      keybinds."shared_except \"locked\""."bind \"Alt t\""."NewTab" = "";
+      ui.pane_frames.hide_session_name = true;
+    };
+  };
 }

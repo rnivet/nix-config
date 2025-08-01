@@ -40,8 +40,10 @@ in {
     # WEB dev
     vscode-langservers-extracted
     rubyPackages.htmlbeautifier
+    rubyPackages.prettier
     phpactor
     typescript-language-server
+    angular-language-server
 
     # GOlang dev
     gopls

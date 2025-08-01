@@ -14,6 +14,7 @@ return {
         python = { "black" },
         sh = { "shfmt" },
         nix = { "alejandra" },
+        htmlangular = { "prettier" },
       },
       formatters = {
         goimports_reviser = {

@@ -234,6 +234,14 @@ return {
       on_attach = on_attach
     })
 
+    -- configure angularls server
+    local angular_capabilities = capabilities
+    angular_capabilities.renameProvider = false
+    lspconfig.angularls.setup({
+      capabilities = angular_capabilities,
+      on_attach = on_attach
+    })
+
     -- configure bash server
     lspconfig.bashls.setup({
       capabilities = capabilities,

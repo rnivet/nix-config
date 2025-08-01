@@ -12,7 +12,7 @@ return {
           return require("codecompanion.adapters").extend("mistral", {
             env = {
               api_key = "CODESTRAL_API_KEY",
-              url = "https://codestral.mistral.ai",
+              url = "https://api.mistral.ai",
             },
             schema = {
               model = {

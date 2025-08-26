@@ -1,7 +1,6 @@
-{
-  pkgs,
-  hostConf,
-  ...
-}: {
-  programs.go.enable = true;
+{...}: {
+  programs.go = {
+    enable = true;
+    goPrivate = ["gitlabdev.vadesecure.com"];
+  };
 }

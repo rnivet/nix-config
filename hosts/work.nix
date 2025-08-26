@@ -9,5 +9,6 @@
     ++ [../programs/dotnet.nix]
     ++ [../programs/kube.nix]
     ++ [../programs/clang.nix]
-    ++ [../programs/dev-python.nix];
+    ++ [../programs/dev-python.nix]
+    ++ [../programs/go.nix];
 }

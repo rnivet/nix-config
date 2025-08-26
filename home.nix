@@ -60,7 +60,7 @@
     identityPaths = ["${hostConf.homedir}/.ssh/id_agenix"];
     secrets = {
       codestral_token = {
-        file = ./secrets/codestral_token.age;
+        file = hostConf.codestral_token_file;
       };
     };
   };

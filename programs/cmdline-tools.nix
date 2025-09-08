@@ -17,4 +17,20 @@
     enable = true;
     enableZshIntegration = true;
   };
+
+  programs.zoxide = {
+    enable = true;
+    enableZshIntegration = true;
+    options = [];
+  };
+
+  programs.eza = {
+    enable = true;
+    enableZshIntegration = true;
+    colors = "auto";
+    extraOptions = [];
+    git = true;
+    icons = "auto";
+    theme = "tokyonight";
+  };
 }

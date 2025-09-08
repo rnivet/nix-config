@@ -1,6 +1,7 @@
 {pkgs, ...}: {
-  home.packages = [
-    pkgs.python3
+  home.packages = with pkgs; [
+    python313
+    python313Packages.pytest
   ];
   programs.poetry = {
     enable = true;

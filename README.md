@@ -14,11 +14,21 @@ Edit /etc/nix/nix.conf and add the following line:
 ```
 experimental-features = nix-command flakes
 ```
-## Install home-manager
+## MacOS hosts
+### Install nix-darwin
+```
+nix run nix-darwin/master#darwin-rebuild -- switch --flake .
+### Install config on Darwin after a modification
+```
+darwin-rebuild switch --flake ~/.config/nix
+```
+```
+## Linux hosts
+### Install home-manager
 ```
 nix run home-manager/release-24.05 -- switch 
 ```
-## Install config after a modification
+### Install config after a modification
 ```
 home-manager switch -b before-home-manager
 ```

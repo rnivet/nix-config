@@ -65,6 +65,37 @@
       ];
     };
 
+    darwinConfigurations."Remis-MacBook-Pro" = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      modules = [
+        ./darwin.nix
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.remi = {
+              imports = [
+                agenix.homeManagerModules.default
+                ./home.nix
+              ];
+            };
+            backupFileExtension = "before-nix";
+            extraSpecialArgs = {hostConf = import ./hosts/Remis-MacBook-Pro.nix;};
+          };
+        }
+        nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            enable = true;
+            enableRosetta = true;
+            user = "remi";
+            autoMigrate = true;
+          };
+        }
+      ];
+    };
+
     homeConfigurations."rnivet@LAP-HEM-0292" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages."x86_64-linux";
 

@@ -1,0 +1,3 @@
+[
+  ../programs/colima.nix
+]

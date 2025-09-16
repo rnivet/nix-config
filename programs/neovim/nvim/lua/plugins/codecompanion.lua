@@ -8,19 +8,21 @@ return {
   config = function()
     local opts = {
       adapters = {
-        codestral = function()
-          return require("codecompanion.adapters").extend("mistral", {
-            env = {
-              api_key = "CODESTRAL_API_KEY",
-              url = "https://api.mistral.ai",
-            },
-            schema = {
-              model = {
-                default = "codestral-latest"
+        http = {
+          codestral = function()
+            return require("codecompanion.adapters").extend("mistral", {
+              env = {
+                api_key = "CODESTRAL_API_KEY",
+                url = "https://api.mistral.ai",
+              },
+              schema = {
+                model = {
+                  default = "codestral-latest"
+                }
               }
-            }
-          })
-        end,
+            })
+          end,
+        }
       },
       strategies = {
         chat = {

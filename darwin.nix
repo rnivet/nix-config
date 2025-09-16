@@ -3,10 +3,10 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    kitty
-    alacritty
-  ];
+  # environment.systemPackages = with pkgs; [
+  #   kitty
+  #   alacritty
+  # ];
 
   # fonts.packages = [
   #   (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; })
@@ -60,6 +60,9 @@
   # Declare primary user
   system.primaryUser = "remi";
   nix.settings.trusted-users = ["root" "remi"];
+
+  # MacOS System settings
+  system.defaults.NSGlobalDomain.KeyRepeat = 2;
 
   # Brew packages
   homebrew = {

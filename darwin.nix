@@ -3,10 +3,11 @@
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  # environment.systemPackages = with pkgs; [
-  #   kitty
-  #   alacritty
-  # ];
+  environment.systemPackages = with pkgs; [
+    alacritty
+    obsidian
+    slack
+  ];
 
   # fonts.packages = [
   #   (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; })

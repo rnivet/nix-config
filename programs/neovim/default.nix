@@ -63,7 +63,7 @@ in {
     ansible-lint
 
     # Docker
-    dockerfile-language-server-nodejs
+    dockerfile-language-server
     docker-compose-language-service
 
     # NIX dev

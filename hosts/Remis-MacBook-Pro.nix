@@ -10,5 +10,6 @@
     ++ import ../roles/macos-dev.nix
     ++ [../programs/kube.nix]
     ++ [../programs/dev-python.nix]
-    ++ [../programs/dev-js.nix];
+    ++ [../programs/dev-js.nix]
+     ++ [../programs/dev-go.nix];
 }

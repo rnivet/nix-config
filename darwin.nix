@@ -77,6 +77,7 @@
     ];
     brews = [
       "dashlane-cli"
+      "ansible-language-server"
     ];
     casks = [
       "onlyoffice"

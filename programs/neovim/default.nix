@@ -59,7 +59,6 @@ in {
     roslyn-ls
 
     # Ansible
-    ansible-language-server
     ansible-lint
 
     # Docker

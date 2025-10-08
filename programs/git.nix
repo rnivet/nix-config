@@ -3,10 +3,6 @@
   pkgs,
   ...
 }: {
-  home.packages = with pkgs; [
-    act
-  ];
-
   programs.git = {
     enable = true;
     userName = hostConf.name;

@@ -16,6 +16,7 @@
         editPreset = "nvim";
       };
       git = {
+        autoFetch = false;
         mainBranches = [
           "main"
           "master"

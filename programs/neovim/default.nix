@@ -55,8 +55,8 @@ in {
     shfmt
 
     # DOTNET dev
-    omnisharp-roslyn
-    roslyn-ls
+    # omnisharp-roslyn
+    # roslyn-ls
 
     # Ansible
     ansible-lint

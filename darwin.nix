@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: let
+  hostConfig = config.home-manager.extraSpecialArgs.hostConf or {};
+in {
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search by name, run:
@@ -71,18 +77,16 @@
     onActivation = {
       autoUpdate = true;
       upgrade = true;
+      cleanup = "uninstall";
     };
-    taps = [
-      "dashlane/tap"
-    ];
-    brews = [
-      "dashlane-cli"
-      "ansible-language-server"
-    ];
-    casks = [
-      "onlyoffice"
-      "scroll-reverser"
-      "transmission"
-    ];
+    taps =
+      []
+      ++ (hostConfig.homebrew_extras.taps or []);
+    brews =
+      ["ansible-language-server"]
+      ++ (hostConfig.homebrew_extras.brews or []);
+    casks =
+      ["onlyoffice"]
+      ++ (hostConfig.homebrew_extras.casks or []);
   };
 }

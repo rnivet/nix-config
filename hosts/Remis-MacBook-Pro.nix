@@ -4,6 +4,11 @@
   email = "rnivet@oversoc.com";
   name = "Remi Nivet";
   codestral_token_file = ../secrets/codestral_token.age;
+  homebrew_extras = {
+    taps = [];
+    brews = [];
+    casks = [];
+  };
   roles =
     import ../roles/common-dev.nix
     ++ import ../roles/common-desktop.nix

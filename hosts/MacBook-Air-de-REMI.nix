@@ -4,6 +4,11 @@
   email = "rnivet@gmail.com";
   name = "Remi Nivet";
   codestral_token_file = ../secrets/codestral_token.age;
+  homebrew_extras = {
+    taps = ["dashlane/tap"];
+    brews = ["dashlane-cli"];
+    casks = ["transmission"];
+  };
   roles =
     import ../roles/common-dev.nix
     ++ import ../roles/dev-ansible.nix

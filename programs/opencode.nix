@@ -1,4 +1,4 @@
-{...}: {
+{config, ...}: {
   programs.opencode = {
     enable = true;
     # rules = "";
@@ -21,16 +21,21 @@
         };
       };
       mcp = {
-        browser-control = {
+        browser = {
+          enabled = true;
           type = "local";
           command = [
-            "node"
-            "/Users/remi/projects/browser-control-mcp/mcp-server/dist/server.js"
+            "npx"
+            "chrome-devtools-mcp@latest"
           ];
-          environment = {
-            EXTENSION_SECRET = "d0e97396-ca92-4da4-a420-ab9894a3cbe4";
-            EXTENSION_PORT = "8089";
+        };
+        context7 = {
+          type = "remote";
+          url = "https://mcp.context7.com/mcp";
+          headers = {
+            CONTEXT7_API_KEY = config.age.secrets.context7_api_key.path;
           };
+          enabled = true;
         };
       };
     };

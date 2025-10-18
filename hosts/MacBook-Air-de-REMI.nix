@@ -4,6 +4,7 @@
   email = "rnivet@gmail.com";
   name = "Remi Nivet";
   codestral_token_file = ../secrets/codestral_token.age;
+  context7_api_key_file = ../secrets/context7_api_key.age;
   homebrew_extras = {
     taps = ["dashlane/tap"];
     brews = ["dashlane-cli"];

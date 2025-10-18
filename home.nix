@@ -62,6 +62,9 @@
       codestral_token = {
         file = hostConf.codestral_token_file;
       };
+      context7_api_key = {
+        file = hostConf.context7_api_key_file;
+      };
     };
   };
 

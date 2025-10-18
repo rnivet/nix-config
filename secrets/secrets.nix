@@ -3,5 +3,7 @@ let
   pro = "ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIKSBzHipLPuQPPXmWALVR5m+takfCfzX0G1HvR3enLbJ";
 in {
   "codestral_token.age".publicKeys = [perso];
+  "context7_api_key.age".publicKeys = [perso];
+
   "codestral_token_pro.age".publicKeys = [pro];
 }

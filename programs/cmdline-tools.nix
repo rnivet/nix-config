@@ -6,6 +6,7 @@
     devenv
     dos2unix
     fzf
+    gnused
     jq
     lazydocker
     ripgrep

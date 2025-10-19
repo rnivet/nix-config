@@ -22,75 +22,21 @@
   # The home.packages option allows you to install Nix packages into your
   # environment.
   home.packages = [
-    # # Adds the 'hello' command to your environment. It prints a friendly
-    # # "Hello, world!" when run.
-    # pkgs.hello
-
-    # # It is sometimes useful to fine-tune packages, for example, by applying
-    # # overrides. You can do that directly here, just don't forget the
-    # # parentheses. Maybe you want to install Nerd Fonts with a limited number of
-    # # fonts?
-    # (pkgs.nerdfonts.override { fonts = [ "FantasqueSansMono" ]; })
-
-    # # You can also create simple shell scripts directly inside your
-    # # configuration. For example, this adds a command 'my-hello' to your
-    # # environment:
-    # (pkgs.writeShellScriptBin "my-hello" ''
-    #   echo "Hello, ${config.home.username}!"
-    # '')
-    pkgs.ragenix
   ];
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
   home.file = {
-    # # Building this configuration will create a copy of 'dotfiles/screenrc' in
-    # # the Nix store. Activating the configuration will then make '~/.screenrc' a
-    # # symlink to the Nix store copy.
-    # ".screenrc".source = dotfiles/screenrc;
-
-    # # You can also set the file content immediately.
-    # ".gradle/gradle.properties".text = ''
-    #   org.gradle.console=verbose
-    #   org.gradle.daemon.idletimeout=3600000
-    # '';
   };
 
-  age = {
-    identityPaths = ["${hostConf.homedir}/.ssh/id_agenix"];
-    secrets = {
-      codestral_token = {
-        file = hostConf.codestral_token_file;
-      };
-      context7_api_key = {
-        file = hostConf.context7_api_key_file;
-      };
-      github_pat = {
-        file = hostConf.github_pat_file;
-      };
-    };
-  };
-
-  # Home Manager can also manage your environment variables through
-  # 'home.sessionVariables'. These will be explicitly sourced when using a
-  # shell provided by Home Manager. If you don't want to manage your shell
-  # through Home Manager then you have to manually source 'hm-session-vars.sh'
-  # located at either
-  #
-  #  ~/.nix-profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  ~/.local/state/nix/profiles/profile/etc/profile.d/hm-session-vars.sh
-  #
-  # or
-  #
-  #  /etc/profiles/per-user/ubuntu/etc/profile.d/hm-session-vars.sh
-  #
-  home.sessionVariables = {
-    CODESTRAL_API_KEY = "`cat ${config.age.secrets.codestral_token.path}`";
-    GITHUB_PAT = "`cat ${config.age.secrets.github_pat.path}`";
-  };
+  home.sessionVariables =
+    {}
+    // (lib.optionalAttrs (builtins.hasAttr "codestral_token_file" hostConf) {
+      CODESTRAL_API_KEY = "`cat /run/agenix/codestral_token`";
+    })
+    // (lib.optionalAttrs (builtins.hasAttr "github_pat_file" hostConf) {
+      GITHUB_PAT = "`cat /run/agenix/github_pat`";
+    });
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

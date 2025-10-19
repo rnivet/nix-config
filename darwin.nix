@@ -1,10 +1,9 @@
 {
   pkgs,
   config,
+  hostConf,
   ...
-}: let
-  hostConfig = config.home-manager.extraSpecialArgs.hostConf or {};
-in {
+}: {
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search by name, run:
@@ -81,12 +80,17 @@ in {
     };
     taps =
       []
-      ++ (hostConfig.homebrew_extras.taps or []);
+      ++ (hostConf.homebrew_extras.taps or []);
     brews =
       ["ansible-language-server"]
-      ++ (hostConfig.homebrew_extras.brews or []);
+      ++ (hostConf.homebrew_extras.brews or []);
     casks =
       ["onlyoffice"]
-      ++ (hostConfig.homebrew_extras.casks or []);
+      ++ (hostConf.homebrew_extras.casks or []);
+  };
+
+  age = {
+    identityPaths = ["${hostConf.homedir}/.ssh/id_agenix"];
+    secrets = hostConf.age_secrets or {};
   };
 }

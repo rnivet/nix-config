@@ -19,7 +19,7 @@
     };
 
     agenix = {
-      url = "github:yaxitech/ragenix";
+      url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
   };
@@ -36,8 +36,10 @@
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."MacBook-Air-de-REMI" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
+      specialArgs = {hostConf = import ./hosts/MacBook-Air-de-REMI.nix;};
       modules = [
         ./darwin.nix
+        agenix.darwinModules.default
         home-manager.darwinModules.home-manager
         {
           home-manager = {
@@ -45,7 +47,6 @@
             useUserPackages = true;
             users.remi = {
               imports = [
-                agenix.homeManagerModules.default
                 ./home.nix
               ];
             };
@@ -67,8 +68,10 @@
 
     darwinConfigurations."Remis-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
+      specialArgs = {hostConf = import ./hosts/Remis-MacBook-Pro.nix;};
       modules = [
         ./darwin.nix
+        agenix.darwinModules.default
         home-manager.darwinModules.home-manager
         {
           home-manager = {
@@ -76,7 +79,6 @@
             useUserPackages = true;
             users.remi = {
               imports = [
-                agenix.homeManagerModules.default
                 ./home.nix
               ];
             };
@@ -94,43 +96,6 @@
           };
         }
       ];
-    };
-
-    homeConfigurations."rnivet@LAP-HEM-0292" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
-
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
-      modules = [
-        agenix.homeManagerModules.default
-        ./home.nix
-      ];
-
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
-      extraSpecialArgs = {hostConf = import ./hosts/work.nix;};
-    };
-    homeConfigurations."ubuntu@ubu-1" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
-
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
-      modules = [./home.nix];
-
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
-      extraSpecialArgs = {hostConf = import ./hosts/ubu-1.nix;};
-    };
-    homeConfigurations."remi@test-home-manager" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."aarch64-linux";
-
-      # Specify your home configuration modules here, for example,
-      # the path to your home.nix.
-      modules = [./home.nix];
-
-      # Optionally use extraSpecialArgs
-      # to pass through arguments to home.nix
-      extraSpecialArgs = {hostConf = import ./hosts/test-home-manager.nix;};
     };
   };
 }

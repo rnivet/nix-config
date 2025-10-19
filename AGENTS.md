@@ -16,6 +16,10 @@
 - Update flakes: `nix flake update`
 - Check configuration: `nix flake check`
 
+## Secrets Management
+
+This configuration uses **ragenix** (not agenix) for managing secrets with age encryption.
+
 ## Code Style Guidelines
 
 ### Nix Files

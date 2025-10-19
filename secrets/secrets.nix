@@ -4,5 +4,8 @@ let
 in {
   "codestral_token.age".publicKeys = [perso];
   "context7_api_key.age".publicKeys = [perso];
+
+  "codestral_token_pro.age".publicKeys = [pro];
   "github_pat_pro.age".publicKeys = [pro];
+  "context7_api_key_pro.age".publicKeys = [pro];
 }

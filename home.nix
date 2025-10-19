@@ -65,6 +65,9 @@
       context7_api_key = {
         file = hostConf.context7_api_key_file;
       };
+      github_pat = {
+        file = hostConf.github_pat_file;
+      };
     };
   };
 
@@ -86,6 +89,7 @@
   #
   home.sessionVariables = {
     CODESTRAL_API_KEY = "`cat ${config.age.secrets.codestral_token.path}`";
+    GITHUB_PAT = "`cat ${config.age.secrets.github_pat.path}`";
   };
 
   # Let Home Manager install and manage itself.

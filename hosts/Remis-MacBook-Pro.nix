@@ -9,6 +9,7 @@
     brews = [];
     casks = [];
   };
+  github_pat_file = ../secrets/github_pat_pro.age;
   roles =
     import ../roles/common-dev.nix
     ++ import ../roles/common-desktop.nix
@@ -16,5 +17,6 @@
     ++ [../programs/kube.nix]
     ++ [../programs/dev-python.nix]
     ++ [../programs/dev-js.nix]
-     ++ [../programs/dev-go.nix];
+    ++ [../programs/dev-go.nix]
+    ++ [../programs/claude.nix];
 }

@@ -71,6 +71,10 @@
 
   # MacOS System settings
   system.defaults.NSGlobalDomain.KeyRepeat = 2;
+  security.sudo.extraConfig = ''
+    Defaults timestamp_type=global
+    Defaults timestamp_timeout=720
+  '';
 
   # Brew packages
   homebrew = {

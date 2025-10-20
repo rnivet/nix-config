@@ -36,7 +36,10 @@
     # $ darwin-rebuild build --flake .#simple
     darwinConfigurations."MacBook-Air-de-REMI" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
-      specialArgs = {hostConf = import ./hosts/MacBook-Air-de-REMI.nix;};
+      specialArgs = {
+        hostConf = import ./hosts/MacBook-Air-de-REMI.nix;
+        inherit agenix;
+      };
       modules = [
         ./darwin.nix
         agenix.darwinModules.default
@@ -68,7 +71,10 @@
 
     darwinConfigurations."Remis-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
-      specialArgs = {hostConf = import ./hosts/Remis-MacBook-Pro.nix;};
+      specialArgs = {
+        hostConf = import ./hosts/Remis-MacBook-Pro.nix;
+        inherit agenix;
+      };
       modules = [
         ./darwin.nix
         agenix.darwinModules.default

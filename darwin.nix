@@ -2,6 +2,7 @@
   pkgs,
   config,
   hostConf,
+  agenix,
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
@@ -9,6 +10,7 @@
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
+    agenix.packages.${pkgs.system}.default
     alacritty
     obsidian
     slack

@@ -7,9 +7,9 @@
   "agent": {
     "plan": {
       "mode": "primary",
-      "permissions": {
+      "permission": {
         "bash": {
-          "cat": "deny"
+          "cat *": "deny"
         }
       },
       "tools": {

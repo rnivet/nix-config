@@ -5,8 +5,12 @@
 }: {
   programs.git = {
     enable = true;
-    userName = hostConf.name;
-    userEmail = hostConf.email;
+    settings = {
+      user = {
+        name = hostConf.name;
+        email = hostConf.email;
+      };
+    };
   };
 
   programs.lazygit = {

@@ -3,6 +3,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+    nixpkgs-go-migrate.url = "github:nixos/nixpkgs/f62d6734af4581af614cab0f2aa16bcecfc33c11";
 
     nix-darwin = {
       url = "github:LnL7/nix-darwin";
@@ -26,6 +27,7 @@
 
   outputs = {
     nixpkgs,
+    nixpkgs-go-migrate,
     nix-darwin,
     nix-homebrew,
     home-manager,
@@ -39,6 +41,9 @@
       specialArgs = {
         hostConf = import ./hosts/MacBook-Air-de-REMI.nix;
         inherit agenix;
+        pkgs-go-migrate = import nixpkgs-go-migrate {
+          system = "aarch64-darwin";
+        };
       };
       modules = [
         ./darwin.nix
@@ -54,7 +59,12 @@
               ];
             };
             backupFileExtension = "before-nix";
-            extraSpecialArgs = {hostConf = import ./hosts/MacBook-Air-de-REMI.nix;};
+            extraSpecialArgs = {
+              hostConf = import ./hosts/MacBook-Air-de-REMI.nix;
+              pkgs-go-migrate = import nixpkgs-go-migrate {
+                system = "aarch64-darwin";
+              };
+            };
           };
         }
         nix-homebrew.darwinModules.nix-homebrew
@@ -74,6 +84,9 @@
       specialArgs = {
         hostConf = import ./hosts/Remis-MacBook-Pro.nix;
         inherit agenix;
+        pkgs-go-migrate = import nixpkgs-go-migrate {
+          system = "aarch64-darwin";
+        };
       };
       modules = [
         ./darwin.nix
@@ -89,7 +102,12 @@
               ];
             };
             backupFileExtension = "before-nix";
-            extraSpecialArgs = {hostConf = import ./hosts/Remis-MacBook-Pro.nix;};
+            extraSpecialArgs = {
+              hostConf = import ./hosts/Remis-MacBook-Pro.nix;
+              pkgs-go-migrate = import nixpkgs-go-migrate {
+                system = "aarch64-darwin";
+              };
+            };
           };
         }
         nix-homebrew.darwinModules.nix-homebrew

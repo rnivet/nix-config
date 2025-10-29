@@ -10,7 +10,7 @@
       "permission": {
         "bash": {
           "*": "allow",
-          "cat *": "deny"
+          "cat *": "ask"
         }
       },
       "tools": {
@@ -44,6 +44,15 @@
       "headers": {
         "Authorization": "Bearer __GITHUB_PAT__"
       }
+    },
+    "kubernetes": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "kubernetes-mcp-server@latest"
+      ]
     }
   }
 }

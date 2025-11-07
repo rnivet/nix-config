@@ -11,7 +11,7 @@ return {
         -- json = { "fixjson" },
         --html = { "prettier" },
         html = { "htmlbeautifier" },
-        python = { "black" },
+        python = { "ruff" },
         sh = { "shfmt" },
         nix = { "alejandra" },
         htmlangular = { "prettier" },

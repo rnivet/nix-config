@@ -32,6 +32,8 @@ in {
     python313Packages.python-lsp-server
     pyright
     black
+    ruff
+    mypy
 
     # YAML dev
     yaml-language-server

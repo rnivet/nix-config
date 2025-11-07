@@ -41,10 +41,13 @@
   # '';
 
   # Auto upgrade nix package and the daemon service.
-  nix.package = pkgs.nix;
-
-  # Necessary for using flakes on this system.
-  nix.settings.experimental-features = "nix-command flakes";
+  nix = {
+    enable = true;
+    package = pkgs.nix;
+    # Necessary for using flakes on this system.
+    settings.experimental-features = "nix-command flakes";
+    gc.automatic = true;
+  };
 
   # Create /etc/zshrc that loads the nix-darwin environment.
   programs.zsh.enable = true; # default shell on catalina
@@ -91,7 +94,11 @@
       ["ansible-language-server"]
       ++ (hostConf.homebrew_extras.brews or []);
     casks =
-      ["onlyoffice"]
+      [
+        "onlyoffice"
+        "zen"
+        "firefox"
+      ]
       ++ (hostConf.homebrew_extras.casks or []);
   };
 

@@ -79,6 +79,49 @@
       ];
     };
 
+    darwinConfigurations."Air-de-Remi" = nix-darwin.lib.darwinSystem {
+      system = "aarch64-darwin";
+      specialArgs = {
+        hostConf = import ./hosts/Air-de-Remi.nix;
+        inherit agenix;
+        pkgs-go-migrate = import nixpkgs-go-migrate {
+          system = "aarch64-darwin";
+        };
+      };
+      modules = [
+        ./darwin.nix
+        agenix.darwinModules.default
+        home-manager.darwinModules.home-manager
+        {
+          home-manager = {
+            useGlobalPkgs = true;
+            useUserPackages = true;
+            users.remi = {
+              imports = [
+                ./home.nix
+              ];
+            };
+            backupFileExtension = "before-nix";
+            extraSpecialArgs = {
+              hostConf = import ./hosts/Air-de-Remi.nix;
+              pkgs-go-migrate = import nixpkgs-go-migrate {
+                system = "aarch64-darwin";
+              };
+            };
+          };
+        }
+        nix-homebrew.darwinModules.nix-homebrew
+        {
+          nix-homebrew = {
+            enable = true;
+            enableRosetta = true;
+            user = "remi";
+            autoMigrate = true;
+          };
+        }
+      ];
+    };
+
     darwinConfigurations."Remis-MacBook-Pro" = nix-darwin.lib.darwinSystem {
       system = "aarch64-darwin";
       specialArgs = {

@@ -98,6 +98,7 @@
         "onlyoffice"
         "zen"
         "firefox"
+        "qobuz"
       ]
       ++ (hostConf.homebrew_extras.casks or []);
   };

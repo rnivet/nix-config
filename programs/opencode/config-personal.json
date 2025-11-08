@@ -1,9 +1,11 @@
 {
   "$schema": "https://opencode.ai/config.json",
   "theme": "tokyonight",
-  "instructions": [
-    ".github/instructions/*.md"
-  ],
+  "keybinds": {
+    "leader": "ctrl+x",
+    "session_child_cycle": "cmd+right",
+    "session_child_cycle_reverse": "cmd+left"
+  },
   "agent": {
     "plan": {
       "mode": "primary",
@@ -18,11 +20,150 @@
         "edit": false,
         "write": false
       }
+    },
+    "feature": {
+      "description": "Orchestrate full feature development workflow",
+      "mode": "primary",
+      "model": "anthropic/claude-sonnet-4-5-20250929",
+      "temperature": 0.6,
+      "prompt": "{file:./agent/feature.md}",
+      "tools": {
+        "task": true,
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "bash": true,
+        "write": false,
+        "edit": false
+      }
+    },
+    "context-analyzer": {
+      "description": "Analyze project context, architecture, and patterns",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-5-20250929",
+      "temperature": 0.4,
+      "prompt": "{file:./agent/context-analyzer.md}",
+      "tools": {
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "bash": true,
+        "context7": true,
+        "write": false,
+        "edit": false
+      }
+    },
+    "architect": {
+      "description": "Design implementation approach and architecture",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-5-20250929",
+      "temperature": 0.7,
+      "prompt": "{file:./agent/architect.md}",
+      "thinking": {
+        "type": "enabled",
+        "budgetTokens": 10000
+      },
+      "tools": {
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "gh_grep": true,
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "doc-researcher": {
+      "description": "Gather and summarize relevant documentation",
+      "mode": "subagent",
+      "model": "anthropic/claude-haiku-4-5-20251001",
+      "temperature": 0.5,
+      "prompt": "{file:./agent/doc-researcher.md}",
+      "tools": {
+        "read": true,
+        "context7": true,
+        "gh_grep": true,
+        "webfetch": true,
+        "write": false,
+        "edit": false,
+        "bash": false
+      }
+    },
+    "test-writer": {
+      "description": "Create comprehensive unit and integration tests",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-5-20250929",
+      "temperature": 0.8,
+      "prompt": "{file:./agent/test-writer.md}",
+      "tools": {
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "write": true,
+        "edit": true,
+        "bash": false
+      }
+    },
+    "implementer": {
+      "description": "Write the actual feature implementation",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-5-20250929",
+      "temperature": 0.6,
+      "prompt": "{file:./agent/implementer.md}",
+      "tools": {
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "write": true,
+        "edit": true,
+        "bash": false
+      }
+    },
+    "test-runner": {
+      "description": "Run tests and analyze failures",
+      "mode": "subagent",
+      "model": "anthropic/claude-haiku-4-5-20251001",
+      "temperature": 0.3,
+      "prompt": "{file:./agent/test-runner.md}",
+      "tools": {
+        "read": true,
+        "bash": true,
+        "grep": true,
+        "write": false,
+        "edit": false
+      }
+    },
+    "documenter": {
+      "description": "Document the new feature comprehensively",
+      "mode": "subagent",
+      "model": "anthropic/claude-haiku-4-5-20251001",
+      "temperature": 0.7,
+      "prompt": "{file:./agent/documenter.md}",
+      "tools": {
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "write": true,
+        "edit": true,
+        "bash": false
+      }
+    },
+    "fixer": {
+      "description": "Fix bugs found during testing",
+      "mode": "subagent",
+      "model": "anthropic/claude-sonnet-4-5-20250929",
+      "temperature": 0.3,
+      "prompt": "{file:./agent/fixer.md}",
+      "tools": {
+        "read": true,
+        "grep": true,
+        "edit": true,
+        "bash": true
+      }
     }
   },
   "mcp": {
     "browser": {
-      "enabled": true,
       "type": "local",
       "command": [
         "npx",
@@ -30,7 +171,6 @@
       ]
     },
     "context7": {
-      "enabled": true,
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
       "headers": {
@@ -38,12 +178,15 @@
       }
     },
     "github": {
-      "enabled": true,
       "type": "remote",
       "url": "https://api.githubcopilot.com/mcp/",
       "headers": {
         "Authorization": "Bearer {env:GITHUB_PAT}"
       }
+    },
+    "gh_grep": {
+      "type": "remote",
+      "url": "https://mcp.grep.app",
     }
   }
 }

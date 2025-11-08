@@ -1,4 +1,5 @@
 {
+  profile = "work";
   username = "remi";
   homedir = "/Users/remi";
   email = "rnivet@oversoc.com";

@@ -1,0 +1,58 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "theme": "tokyonight",
+  "instructions": [
+    ".github/instructions/*.md"
+  ],
+  "agent": {
+    "plan": {
+      "mode": "primary",
+      "permission": {
+        "bash": {
+          "*": "allow",
+          "cat *": "ask"
+        }
+      },
+      "tools": {
+        "bash": true,
+        "edit": false,
+        "write": false
+      }
+    }
+  },
+  "mcp": {
+    "browser": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "npx",
+        "chrome-devtools-mcp@latest"
+      ]
+    },
+    "context7": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://mcp.context7.com/mcp",
+      "headers": {
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
+      }
+    },
+    "github": {
+      "enabled": true,
+      "type": "remote",
+      "url": "https://api.githubcopilot.com/mcp/",
+      "headers": {
+        "Authorization": "Bearer {env:GITHUB_PAT}"
+      }
+    },
+    "kubernetes": {
+      "enabled": true,
+      "type": "local",
+      "command": [
+        "npx",
+        "-y",
+        "kubernetes-mcp-server@latest"
+      ]
+    }
+  }
+}

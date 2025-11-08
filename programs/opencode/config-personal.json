@@ -34,7 +34,7 @@
       "type": "remote",
       "url": "https://mcp.context7.com/mcp",
       "headers": {
-        "CONTEXT7_API_KEY": "__CONTEXT7_API_KEY__"
+        "CONTEXT7_API_KEY": "{env:CONTEXT7_API_KEY}"
       }
     },
     "github": {
@@ -42,17 +42,8 @@
       "type": "remote",
       "url": "https://api.githubcopilot.com/mcp/",
       "headers": {
-        "Authorization": "Bearer __GITHUB_PAT__"
+        "Authorization": "Bearer {env:GITHUB_PAT}"
       }
-    },
-    "kubernetes": {
-      "enabled": true,
-      "type": "local",
-      "command": [
-        "npx",
-        "-y",
-        "kubernetes-mcp-server@latest"
-      ]
     }
   }
 }

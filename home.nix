@@ -34,6 +34,9 @@
     // (lib.optionalAttrs (builtins.hasAttr "codestral_token_file" hostConf) {
       CODESTRAL_API_KEY = "`cat /run/agenix/codestral_token`";
     })
+    // (lib.optionalAttrs (builtins.hasAttr "context7_api_key_file" hostConf) {
+      CONTEXT7_API_KEY = "`cat /run/agenix/context7_api_key`";
+    })
     // (lib.optionalAttrs (builtins.hasAttr "github_pat_file" hostConf) {
       GITHUB_PAT = "`cat /run/agenix/github_pat`";
     });

@@ -18,6 +18,7 @@
       "vlc"
       "connectmenow"
       "google-drive"
+      "protonvpn"
     ];
   };
   age_secrets = {

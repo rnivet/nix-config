@@ -39,6 +39,9 @@
       mode = "0400";
     };
   };
+  dns_addresses = {
+    "monel.spip.local" = "127.0.0.1";
+  };
   roles =
     import ../roles/common-dev.nix
     ++ import ../roles/dev-ansible.nix

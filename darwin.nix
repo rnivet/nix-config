@@ -46,6 +46,7 @@
     package = pkgs.nix;
     # Necessary for using flakes on this system.
     settings.experimental-features = "nix-command flakes";
+    settings.trusted-users = ["root" "remi"];
     gc.automatic = true;
   };
 
@@ -68,16 +69,17 @@
     home = "/Users/remi";
   };
 
-  # Declare primary user
-  system.primaryUser = "remi";
-  nix.settings.trusted-users = ["root" "remi"];
-
   # MacOS System settings
-  system.defaults.NSGlobalDomain.KeyRepeat = 2;
-  security.sudo.extraConfig = ''
-    Defaults timestamp_type=global
-    Defaults timestamp_timeout=720
-  '';
+  system = {
+    primaryUser = "remi";
+    defaults.NSGlobalDomain.KeyRepeat = 2;
+  };
+  security = {
+    sudo.extraConfig = ''
+      Defaults timestamp_type=global
+      Defaults timestamp_timeout=720
+    '';
+  };
 
   # Brew packages
   homebrew = {
@@ -106,5 +108,10 @@
   age = {
     identityPaths = ["${hostConf.homedir}/.ssh/id_agenix"];
     secrets = hostConf.age_secrets or {};
+  };
+
+  services.dnsmasq = {
+    enable = true;
+    addresses = hostConf.dns_addresses;
   };
 }

@@ -29,6 +29,7 @@
       mode = "0400";
     };
   };
+  dns_addresses = {};
   roles =
     import ../roles/common-dev.nix
     ++ import ../roles/dev-ansible.nix

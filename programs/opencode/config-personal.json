@@ -129,8 +129,8 @@
         "read": true,
         "bash": true,
         "grep": true,
-        "write": false,
-        "edit": false
+        "write": true,
+        "edit": true
       }
     },
     "documenter": {
@@ -157,6 +157,22 @@
       "tools": {
         "read": true,
         "grep": true,
+        "edit": true,
+        "bash": true
+      }
+    },
+    "doc-manager": {
+      "description": "Organize, refactor, and maintain documentation",
+      "mode": "subagent",
+      "model": "anthropic/claude-haiku-4-5-20251001",
+      "temperature": 0.4,
+      "prompt": "{file:./agent/doc-manager.md}",
+      "tools": {
+        "read": true,
+        "grep": true,
+        "glob": true,
+        "list": true,
+        "write": true,
         "edit": true,
         "bash": true
       }

@@ -101,6 +101,7 @@
         "zen"
         "firefox"
         "qobuz"
+        "google-chrome"
       ]
       ++ (hostConf.homebrew_extras.casks or []);
   };

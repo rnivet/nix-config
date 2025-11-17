@@ -1,11 +1,10 @@
 {
   pkgs,
-  config,
   hostConf,
   ...
 }: {
   home.packages = [
-    pkgs.opencode
+    # pkgs.opencode
   ];
 
   home.file = {

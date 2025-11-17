@@ -9,7 +9,9 @@
   github_pat_file = ../secrets/github_pat.age;
   homebrew_extras = {
     taps = [];
-    brews = [];
+    brews = [
+      "opencode"
+    ];
     casks = [
       "readdle-spark"
       "signal"
@@ -46,5 +48,6 @@
     import ../roles/common-dev.nix
     ++ import ../roles/dev-ansible.nix
     ++ import ../roles/common-desktop.nix
-    ++ [../programs/dev-python.nix];
+    ++ [../programs/dev-python.nix]
+    ++ [../programs/claude.nix];
 }

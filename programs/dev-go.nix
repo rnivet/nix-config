@@ -1,12 +1,15 @@
-{pkgs, pkgs-go-migrate, ...}: {
+{
+  pkgs,
+  pkgs-go-migrate,
+  ...
+}: {
   programs.go = {
     enable = true;
   };
 
-  home.packages = with pkgs; [
-    govulncheck
-    gosec
-  ] ++ [
+  home.packages = [
+    pkgs.govulncheck
+    pkgs.gosec
     pkgs-go-migrate.go-migrate
   ];
 }

@@ -10,6 +10,9 @@
         name = hostConf.name;
         email = hostConf.email;
       };
+      pull = {
+        rebase = true;
+      };
     };
   };
 

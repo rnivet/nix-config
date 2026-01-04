@@ -3,8 +3,8 @@
   "theme": "tokyonight",
   "keybinds": {
     "leader": "ctrl+x",
-    "session_child_cycle": "cmd+right",
-    "session_child_cycle_reverse": "cmd+left"
+    "session_child_cycle": "<leader>+right",
+    "session_child_cycle_reverse": "<leader>+left"
   },
   "agent": {
     "plan": {

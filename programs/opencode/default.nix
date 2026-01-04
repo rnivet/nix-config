@@ -14,6 +14,10 @@
       else ./config-personal.json;
   };
 
+  home.file = {
+    ".config/opencode/AGENTS.md".source = ./AGENTS.md;
+  };
+
   home.file."./.config/opencode/agent/" = {
     source = ./agent;
     recursive = true;

@@ -2,8 +2,8 @@
   home.packages = with pkgs; [
     kubectl
     kubernetes-helm
-    kubernetes-helmPlugins.helm-diff
     argocd
+    kubefwd
   ];
 
   programs.kubecolor = {

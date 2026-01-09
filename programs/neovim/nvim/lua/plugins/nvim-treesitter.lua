@@ -4,19 +4,11 @@ return {
   event = { "BufReadPre", "BufNewFile" },
   dev = true,
   config = function()
-    -- import module
-    local treesitter = require("nvim-treesitter.configs")
+    -- Modern nvim-treesitter no longer requires nvim-treesitter.configs
+    -- Highlighting and indent are now built into Neovim's treesitter
+    -- Parsers are provided via Nix and added to runtimepath in default.nix
 
-    -- configure treesitter
-    treesitter.setup({
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = true,
-      },
-      indent = {
-        enable = true,
-        disable = { "yaml" }
-      },
-    })
+    -- Enable treesitter highlighting (built-in to Neovim)
+    vim.treesitter.language.register('yaml', 'yaml')
   end
 }

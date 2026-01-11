@@ -49,5 +49,7 @@
     ++ import ../roles/dev-ansible.nix
     ++ import ../roles/common-desktop.nix
     ++ [../programs/dev-python.nix]
-    ++ [../programs/claude.nix];
+    ++ [../programs/claude.nix]
+    ++ [../programs/docker.nix]
+    ++ [../programs/telegram.nix];
 }

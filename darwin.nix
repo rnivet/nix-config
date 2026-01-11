@@ -76,7 +76,7 @@
   };
   security = {
     sudo.extraConfig = ''
-      Defaults timestamp_type=global
+      Defaults timestamp_type=ppid
       Defaults timestamp_timeout=720
     '';
   };

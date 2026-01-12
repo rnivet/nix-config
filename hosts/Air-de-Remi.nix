@@ -22,6 +22,8 @@
       "connectmenow"
       "google-drive"
       "protonvpn"
+      "telegram"
+      "todoist-app"
     ];
   };
   age_secrets = {
@@ -50,6 +52,5 @@
     ++ import ../roles/common-desktop.nix
     ++ [../programs/dev-python.nix]
     ++ [../programs/claude.nix]
-    ++ [../programs/docker.nix]
-    ++ [../programs/telegram.nix];
+    ++ [../programs/docker.nix];
 }

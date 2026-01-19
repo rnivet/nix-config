@@ -7,6 +7,7 @@
     dos2unix
     fzf
     gnused
+    imagemagick
     jq
     lazydocker
     ripgrep

@@ -10,6 +10,7 @@
     imagemagick
     jq
     lazydocker
+    ngrok
     ripgrep
     unzip
     wget

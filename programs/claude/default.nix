@@ -12,4 +12,14 @@
       8. MAKE ALL FIXES AND CODE CHANGES AS SIMPLE AS HUMANLY POSSIBLE. THEY SHOULD ONLY IMPACT NECESSARY CODE RELEVANT TO THE TASK AND NOTHING ELSE. IT SHOULD IMPACT AS LITTLE CODE AS POSSIBLE. YOUR GOAL IS TO NOT INTRODUCE ANY BUGS. IT'S ALL ABOUT SIMPLICITY
     '';
   };
+
+  home.packages = with pkgs; [
+    (writeShellScriptBin "ccstatusline" ''
+      exec npx ccstatusline@latest "$@"
+    '')
+  ];
+
+  home.file = {
+    ".config/ccstatusline/settings.json".source = ./ccstatusline.json;
+  };
 }

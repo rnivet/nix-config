@@ -33,6 +33,5 @@
   roles =
     import ../roles/common-dev.nix
     ++ import ../roles/common-desktop.nix
-    ++ import ../roles/macos-dev.nix
     ++ [../programs/kube.nix];
 }

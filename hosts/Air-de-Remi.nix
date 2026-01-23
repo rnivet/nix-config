@@ -47,10 +47,7 @@
     "monel.spip.local" = "127.0.0.1";
   };
   roles =
-    import ../roles/common-dev.nix
-    ++ import ../roles/dev-ansible.nix
-    ++ import ../roles/common-desktop.nix
-    ++ [../programs/dev-python.nix]
-    ++ [../programs/claude.nix]
-    ++ [../programs/docker.nix];
+    import ../roles/common-desktop.nix
+    ++ import ../roles/common-dev.nix
+    ++ import ../roles/dev-ansible.nix;
 }

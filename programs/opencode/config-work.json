@@ -4,6 +4,25 @@
   "instructions": [
     ".github/instructions/*.md"
   ],
+  "provider": {
+    "ollama": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Ollama (ldenel-x99)",
+      "options": {
+        "baseURL": "http://ldenel-x99:11434/v1"
+      },
+      "models": {
+        "qwen3-coder": {
+          "name": "Qwen Coder",
+          "contextWindow": 32768,
+          "maxTokens": 4096
+        },
+        "devstral-2:123b": {
+          "name": "devstral-2"
+        }
+      }
+    }
+  },
   "agent": {
     "plan": {
       "mode": "primary",

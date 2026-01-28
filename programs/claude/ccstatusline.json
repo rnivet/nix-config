@@ -43,7 +43,7 @@
       },
       {
         "id": "80daa400-6194-4944-ae2c-7dec8e8abfad",
-        "type": "block-timer",
+        "type": "session-clock",
         "metadata": {
           "display": "progress"
         }

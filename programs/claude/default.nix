@@ -1,6 +1,18 @@
 {pkgs, ...}: {
   programs.claude-code = {
     enable = true;
+    settings = {
+      statusLine = {
+        type = "command";
+        command = "npx -y ccstatusline@latest";
+        padding = 0;
+      };
+      enabledPlugins = {
+        "frontend-design@claude-plugins-official" = true;
+        "code-simplifier@claude-plugins-official" = true;
+        "code-review@claude-plugins-official" = true;
+      };
+    };
     memory.text = ''
       1. First think through the problem, read the codebase for relevant files, and write a plan.
       2. The plan should have a list of todo items that you can check off as you complete them.

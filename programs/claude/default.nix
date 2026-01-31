@@ -12,6 +12,15 @@
         "code-simplifier@claude-plugins-official" = true;
         "code-review@claude-plugins-official" = true;
       };
+      attribution = {
+        "commit" = "";
+        "pr" = "";
+      };
+      spinnerTipsEnabled = false;
+      permissions = {
+        defaultMode = "plan";
+        allow = ["Bash(ls:*)"];
+      };
     };
     memory.text = ''
       1. First think through the problem, read the codebase for relevant files, and write a plan.

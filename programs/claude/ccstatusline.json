@@ -5,7 +5,7 @@
       {
         "id": "1",
         "type": "current-working-dir",
-        "color": "cyan",
+        "color": "brightBlue",
         "metadata": {
           "fishStyle": "true"
         }
@@ -17,7 +17,7 @@
       {
         "id": "3",
         "type": "git-branch",
-        "color": "brightBlack"
+        "color": "brightGreen"
       },
       {
         "id": "4",
@@ -26,7 +26,7 @@
       {
         "id": "5",
         "type": "model",
-        "color": "magenta"
+        "color": "brightMagenta"
       },
       {
         "id": "6",

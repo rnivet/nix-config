@@ -17,9 +17,13 @@
         "pr" = "";
       };
       spinnerTipsEnabled = false;
+      model = "opusplan";
       permissions = {
-        defaultMode = "plan";
-        allow = ["Bash(ls:*)"];
+        #defaultMode = "plan";
+        allow = [
+          "Bash(ls:*)"
+          "Bash(find:*)"
+        ];
       };
     };
     memory.text = ''

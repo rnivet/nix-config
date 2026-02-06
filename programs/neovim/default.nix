@@ -1,4 +1,8 @@
-{pkgs, ...}: let
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}: let
   treesitterWithGrammars = pkgs.vimPlugins.nvim-treesitter.withAllGrammars;
   treesitter-parsers = pkgs.symlinkJoin {
     name = "treesitter-parsers";
@@ -77,6 +81,7 @@ in {
 
   programs.neovim = {
     enable = true;
+    package = pkgs-unstable.neovim;
     defaultEditor = true;
     viAlias = true;
     plugins = [

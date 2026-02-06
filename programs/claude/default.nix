@@ -1,6 +1,11 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}: {
   programs.claude-code = {
     enable = true;
+    package = pkgs-unstable.claude-code;
     settings = {
       statusLine = {
         type = "command";

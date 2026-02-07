@@ -1,20 +1,21 @@
 {
   pkgs,
-  config,
-  hostConf,
+  pkgs-unstable,
   agenix,
+  hostConf,
   ...
 }: {
   nixpkgs.config.allowUnfree = true;
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
-  environment.systemPackages = with pkgs; [
-    agenix.packages.${pkgs.system}.default
-    alacritty
-    obsidian
-    slack
-  ];
+  environment.systemPackages =
+    [
+      agenix.packages.${pkgs.system}.default
+      pkgs-unstable.obsidian
+      pkgs-unstable.slack
+    ]
+    ++ (hostConf.systemPackages_extras or []);
 
   # fonts.packages = [
   #   (pkgs.nerdfonts.override { fonts = [ "Meslo" ]; })

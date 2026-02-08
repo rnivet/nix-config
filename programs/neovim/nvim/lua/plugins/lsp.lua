@@ -161,6 +161,9 @@ return {
     vim.lsp.enable('jsonls')
     vim.lsp.enable('ts_ls')
     vim.lsp.enable('angularls')
+    vim.lsp.config('bashls', {
+      filetypes = { 'bash' }
+    })
     vim.lsp.enable('bashls')
     vim.lsp.enable('nixd')
     vim.lsp.enable('helm_ls')

@@ -11,7 +11,7 @@
   # $ nix-env -qaP | grep wget
   environment.systemPackages =
     [
-      agenix.packages.${pkgs.system}.default
+      agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
       pkgs-unstable.obsidian
       pkgs-unstable.slack
     ]

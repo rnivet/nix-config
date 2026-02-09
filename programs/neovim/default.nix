@@ -8,7 +8,7 @@
     (
       (builtins.getFlake "github:konradmalik/nixpkgs/1cd039866ff4728d85430ba66af60ba790a4789b")
       .legacyPackages
-      .${pkgs.system}
+      .${pkgs.stdenv.hostPlatform.system}
     )
     roslyn-ls
     ;

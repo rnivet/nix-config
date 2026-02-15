@@ -4,6 +4,7 @@
   homedir = "/Users/remi";
   email = "rnivet@gmail.com";
   name = "Remi Nivet";
+  git_default_branch = "master";
   codestral_token_file = ../secrets/codestral_token.age;
   context7_api_key_file = ../secrets/context7_api_key.age;
   github_pat_file = ../secrets/github_pat.age;

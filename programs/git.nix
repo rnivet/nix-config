@@ -13,6 +13,9 @@
       pull = {
         rebase = true;
       };
+      init = {
+        defaultBranch = hostConf.git_default_branch;
+      };
     };
   };
 

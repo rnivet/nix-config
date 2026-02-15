@@ -4,5 +4,6 @@
     docker
     docker-compose
     docker-credential-helpers
+    docker-buildx
   ];
 }

@@ -4,17 +4,15 @@
     pkgs.nerd-fonts.meslo-lg
   ];
 
-  home.file = {
-    ".config/oh-my-posh/config.yml".source = ./oh-my-posh.yml;
-  };
-
   programs.zsh = {
     enable = true;
     autosuggestion.enable = true;
+    shellAliases = {
+      lg = "lazygit";
+      ld = "lazydocker";
+      llt = "eza -lr -snew";
+    };
     initContent = ''
-      # Start oh-my-posh
-      eval "$(oh-my-posh init zsh --config $HOME/.config/oh-my-posh/config.yml)"
-
       # Update zellij tab name automatically
       zellij_tab_name_update() {
         if [[ -n $ZELLIJ ]]; then
@@ -36,19 +34,6 @@
       zellij_tab_name_update
       chpwd_functions+=(zellij_tab_name_update)
     '';
-    # oh-my-zsh = {
-    #   enable = true;
-    #   extraConfig = ''
-    #     zstyle :omz:update mode auto
-    #     zstyle :omz:plugins:ssh-agent agent-forwarding yes
-    #   '';
-    #   plugins = [
-    #     "ssh-agent"
-    #     "git"
-    #     "docker"
-    #     "docker-compose"
-    #   ];
-    # };
     prezto = {
       enable = true;
       pmodules = [
@@ -66,13 +51,17 @@
         "docker"
       ];
       terminal.autoTitle = null;
-      # terminal.tabTitleFormat = "%m: %s";
     };
+  };
+
+  programs.oh-my-posh = {
+    enable = true;
+    enableZshIntegration = true;
+    configFile = ./oh-my-posh.yml;
   };
 
   programs.atuin = {
     enable = true;
-    # flags = ["--disable-up-arrow"];
     settings = {
       filter_mode_shell_up_key_binding = "session";
       enter_accept = true;

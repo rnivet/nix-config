@@ -103,6 +103,7 @@
         "firefox"
         "qobuz"
         "google-chrome"
+        "gitbutler"
       ]
       ++ (hostConf.homebrew_extras.casks or []);
   };

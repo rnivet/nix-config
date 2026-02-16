@@ -8,7 +8,6 @@
     enable = true;
     autosuggestion.enable = true;
     shellAliases = {
-      lg = "lazygit";
       ld = "lazydocker";
       llt = "eza -lr -snew";
     };

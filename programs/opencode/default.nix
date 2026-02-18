@@ -1,10 +1,6 @@
-{
-  pkgs,
-  hostConf,
-  ...
-}: {
+{pkgs-unstable, ...}: {
   home.packages = [
-    pkgs.opencode
+    pkgs-unstable.opencode
   ];
 
   # home.file = {

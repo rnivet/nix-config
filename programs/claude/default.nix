@@ -28,6 +28,9 @@
         allow = [
           "Bash(ls:*)"
           "Bash(find:*)"
+          "Bash(uv run mypy:*)"
+          "Bash(uv run ruff:*)"
+          "Bash(uv run pytest:*)"
         ];
       };
     };

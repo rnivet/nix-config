@@ -16,6 +16,7 @@
         "frontend-design@claude-plugins-official" = true;
         "code-simplifier@claude-plugins-official" = true;
         "code-review@claude-plugins-official" = true;
+        "skill-creator@claude-plugins-official" = true;
       };
       attribution = {
         "commit" = "";

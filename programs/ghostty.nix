@@ -8,6 +8,7 @@
     package = pkgs.ghostty-bin;
     enableZshIntegration = true;
     settings = {
+      term = "xterm-256color";
       theme = "TokyoNight Moon";
       macos-option-as-alt = "left";
       font-family = "MesloLGS Nerd Font Mono";

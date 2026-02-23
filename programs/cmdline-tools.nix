@@ -1,19 +1,25 @@
-{pkgs, ...}: {
-  home.packages = with pkgs; [
-    bat
-    btop
-    curl
-    devenv
-    dos2unix
-    fzf
-    gnused
-    imagemagick
-    jq
-    lazydocker
-    ngrok
-    ripgrep
-    unzip
-    wget
+{
+  pkgs,
+  pkgs-unstable,
+  ...
+}: {
+  home.packages = [
+    pkgs.bat
+    pkgs.btop
+    pkgs.curl
+    pkgs.devenv
+    pkgs.dos2unix
+    pkgs.fzf
+    pkgs.gnused
+    pkgs.imagemagick
+    pkgs.jq
+    pkgs.lazydocker
+    pkgs-unstable.llmfit
+    pkgs.mactop
+    pkgs.ngrok
+    pkgs.ripgrep
+    pkgs.unzip
+    pkgs.wget
   ];
 
   programs.direnv = {

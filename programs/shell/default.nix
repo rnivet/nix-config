@@ -71,16 +71,30 @@
   programs.zellij = {
     enable = true;
     enableZshIntegration = true;
+    attachExistingSession = true;
+    exitShellOnExit = false;
     settings = {
       theme = "tokyo-night";
       pane_frames = true;
       default_layout = "compact";
-      keybinds.normal.unbind = "Ctrl b";
-      keybinds.locked."bind \"Ctrl g\"".SwitchToMode = "Normal";
-      keybinds.tab."bind \"Ctrl t\"".SwitchToMode = "Normal";
-      keybinds."shared_except \"locked\""."bind \"Alt t\""."NewTab" = "";
-      keybinds."shared_except \"locked\""."bind \"Alt f\""."ToggleFocusFullscreen" = "";
       ui.pane_frames.hide_session_name = true;
     };
+    extraConfig = ''
+      keybinds {
+        locked {
+          bind "Ctrl g" { SwitchToMode "Normal"; }
+        }
+        normal {
+          unbind "Ctrl b"
+        }
+        shared_except "locked" {
+          bind "Alt f" { ToggleFocusFullscreen; }
+          bind "Alt t" { NewTab; }
+        }
+        tab {
+          bind "Ctrl t" { SwitchToMode "Normal"; }
+        }
+      }
+    '';
   };
 }

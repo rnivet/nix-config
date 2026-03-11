@@ -3,5 +3,6 @@
     dbeaver-bin
     mongosh
     mongodb-tools
+    postgresql_18
   ];
 }

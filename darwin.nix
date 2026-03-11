@@ -5,7 +5,13 @@
   hostConf,
   ...
 }: {
-  nixpkgs.config.allowUnfree = true;
+  nixpkgs.config = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "lima-full-1.2.2"
+      "lima-additional-guestagents-1.2.2"
+    ];
+  };
 
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget

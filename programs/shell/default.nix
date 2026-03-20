@@ -12,6 +12,11 @@
       llt = "eza -lr -snew";
     };
     initContent = ''
+      # Auto-start zellij only in Ghostty
+      if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
+        ZELLIJ_AUTO_ATTACH=true eval "$(zellij setup --generate-auto-start zsh)"
+      fi
+
       # Update zellij tab name automatically
       zellij_tab_name_update() {
         if [[ -n $ZELLIJ ]]; then
@@ -70,7 +75,7 @@
 
   programs.zellij = {
     enable = true;
-    enableZshIntegration = true;
+    enableZshIntegration = false;
     attachExistingSession = true;
     exitShellOnExit = false;
     settings = {

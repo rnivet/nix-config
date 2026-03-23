@@ -100,8 +100,10 @@
       []
       ++ (hostConf.homebrew_extras.taps or []);
     brews =
-      ["ansible-language-server"]
-      ["mole"]
+      [
+        "ansible-language-server"
+        "mole"
+      ]
       ++ (hostConf.homebrew_extras.brews or []);
     casks =
       [

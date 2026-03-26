@@ -35,5 +35,6 @@
     import ../roles/common-desktop.nix
     ++ import ../roles/common-dev.nix
     ++ [../programs/kube.nix]
-    ++ [../programs/opencode];
+    ++ [../programs/opencode]
+    ++ [../programs/ollama.nix];
 }

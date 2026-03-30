@@ -32,6 +32,8 @@
           "Bash(uv run mypy:*)"
           "Bash(uv run ruff:*)"
           "Bash(uv run pytest:*)"
+          "mcp__claude_ai_Atlassian__ListAccessibleResources"
+          "mcp__claude_ai_Atlassian__getJiraIssue"
         ];
       };
     };

@@ -35,9 +35,11 @@
         allow = [
           "Bash(ls *)"
           "Bash(find *)"
+          "Bash(grep *)"
           "Bash(uv run mypy:*)"
           "Bash(uv run ruff:*)"
           "Bash(uv run pytest:*)"
+          "Bash(npm run *)"
           "Bash(git diff *)"
           "Bash(git log *)"
           "mcp__claude_ai_Atlassian__ListAccessibleResources"

@@ -27,14 +27,19 @@
       permissions = {
         #defaultMode = "plan";
         deny = [
-          "Read(.env)"
+          "Read(./.env)"
+        ];
+        ask = [
+          "Bash(git commit *)"
         ];
         allow = [
-          "Bash(ls:*)"
-          "Bash(find:*)"
+          "Bash(ls *)"
+          "Bash(find *)"
           "Bash(uv run mypy:*)"
           "Bash(uv run ruff:*)"
           "Bash(uv run pytest:*)"
+          "Bash(git diff *)"
+          "Bash(git log *)"
           "mcp__claude_ai_Atlassian__ListAccessibleResources"
           "mcp__claude_ai_Atlassian__getJiraIssue"
         ];

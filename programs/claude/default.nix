@@ -26,6 +26,9 @@
       model = "opusplan";
       permissions = {
         #defaultMode = "plan";
+        deny = [
+          "Read(.env)"
+        ];
         allow = [
           "Bash(ls:*)"
           "Bash(find:*)"

@@ -13,6 +13,12 @@
     ];
   };
 
+  nixpkgs.overlays = [
+    (final: super: {
+      direnv = super.direnv.overrideAttrs (_: { doCheck = false; });
+    })
+  ];
+
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages =

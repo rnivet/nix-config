@@ -24,6 +24,7 @@
       };
       spinnerTipsEnabled = false;
       model = "opusplan";
+      effortLevel = "high";
       permissions = {
         #defaultMode = "plan";
         deny = [

@@ -9,7 +9,7 @@
     autosuggestion.enable = true;
     shellAliases = {
       ld = "lazydocker";
-      llt = "eza -lr -snew";
+      llt = "eza -l -snew";
     };
     initContent = ''
       # Auto-start zellij only in Ghostty

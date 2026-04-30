@@ -17,6 +17,7 @@
     pkgs-unstable.llmfit
     pkgs.mactop
     pkgs.ngrok
+    pkgs.poppler-utils
     pkgs.ripgrep
     pkgs.unzip
     pkgs.wget

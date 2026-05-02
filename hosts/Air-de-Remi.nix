@@ -25,6 +25,7 @@
       "protonvpn"
       "telegram"
       "todoist-app"
+      "cyberduck"
     ];
   };
   age_secrets = {

@@ -26,6 +26,7 @@
       "telegram"
       "todoist-app"
       "cyberduck"
+      "balenaetcher"
     ];
   };
   age_secrets = {

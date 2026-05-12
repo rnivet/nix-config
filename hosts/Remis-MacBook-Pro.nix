@@ -36,5 +36,6 @@
     ++ import ../roles/common-dev.nix
     ++ [../programs/kube.nix]
     ++ [../programs/opencode]
-    ++ [../programs/ollama.nix];
+    ++ [../programs/ollama.nix]
+    ++ [../programs/nats.nix];
 }

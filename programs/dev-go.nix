@@ -14,5 +14,6 @@
     pkgs.govulncheck
     pkgs.gosec
     pkgs-go-migrate.go-migrate
+    pkgs.golangci-lint
   ];
 }

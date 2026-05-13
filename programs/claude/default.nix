@@ -55,6 +55,10 @@
       ## Shell
 
       Always use `/usr/bin/make` instead of `make` in Bash commands. The user's zsh has `make` defined as an autoloaded function for tab-completion that shadows the binary and can fail in non-interactive subshells.
+
+      ## Git
+
+      NEVER commit changes yourself unless I explicitely ask you to. I'm using git diff to review your work before commiting
     '';
   };
 

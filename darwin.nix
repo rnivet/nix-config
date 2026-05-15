@@ -15,7 +15,7 @@
 
   nixpkgs.overlays = [
     (final: super: {
-      direnv = super.direnv.overrideAttrs (_: { doCheck = false; });
+      direnv = super.direnv.overrideAttrs (_: {doCheck = false;});
     })
   ];
 
@@ -114,6 +114,7 @@
     casks =
       [
         "claude"
+        "cmux"
         "firefox"
         "gitbutler"
         "google-chrome"

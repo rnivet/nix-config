@@ -2,7 +2,22 @@
   pkgs,
   pkgs-unstable,
   ...
-}: {
+}: let
+  cmuxNotifyHook = pkgs.writeShellScript "cmux-notify" ''
+    EVENT=$(cat)
+    EVENT_TYPE=$(printf '%s' "$EVENT" | ${pkgs.jq}/bin/jq -r '.hook_event_name')
+
+    case "$EVENT_TYPE" in
+      Notification)
+        MSG=$(printf '%s' "$EVENT" | ${pkgs.jq}/bin/jq -r '.message // "Claude needs attention"')
+        cmux notify --title "Claude Code" --body "$MSG"
+        ;;
+      Stop)
+        cmux notify --title "Claude Code" --body "Waiting for input"
+        ;;
+    esac
+  '';
+in {
   programs.claude-code = {
     enable = true;
     package = pkgs-unstable.claude-code;
@@ -25,6 +40,30 @@
       spinnerTipsEnabled = false;
       model = "opusplan";
       effortLevel = "high";
+      hooks = {
+        Notification = [
+          {
+            hooks = [
+              {
+                type = "command";
+                command = toString cmuxNotifyHook;
+                async = true;
+              }
+            ];
+          }
+        ];
+        Stop = [
+          {
+            hooks = [
+              {
+                type = "command";
+                command = toString cmuxNotifyHook;
+                async = true;
+              }
+            ];
+          }
+        ];
+      };
       permissions = {
         #defaultMode = "plan";
         deny = [

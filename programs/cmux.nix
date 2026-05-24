@@ -4,6 +4,7 @@
     schemaVersion = 1;
     app = {
       newWorkspacePlacement = "end";
+      workspaceInheritWorkingDirectory = false;
     };
     notifications = {
       hooks = [

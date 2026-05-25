@@ -19,6 +19,8 @@
       bindings = {
         nextSurface = "cmd+right";
         prevSurface = "cmd+left";
+        nextWorkspace = "cmd+down";
+        prevWorspace = "cmd+up";
       };
     };
   };

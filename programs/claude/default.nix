@@ -22,6 +22,7 @@ in {
     enable = true;
     package = pkgs-unstable.claude-code;
     settings = {
+      autoMode = {};
       statusLine = {
         type = "command";
         command = "npx -y ccstatusline@latest";

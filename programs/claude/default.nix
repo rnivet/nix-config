@@ -23,6 +23,7 @@ in {
     package = pkgs-unstable.claude-code;
     settings = {
       autoMode = {};
+      skipAutoPermissionPrompt = true;
       statusLine = {
         type = "command";
         command = "npx -y ccstatusline@latest";
@@ -66,7 +67,7 @@ in {
         ];
       };
       permissions = {
-        #defaultMode = "plan";
+        defaultMode = "auto";
         deny = [
           "Read(./.env)"
         ];

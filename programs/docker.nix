@@ -5,7 +5,7 @@
 
   home.packages = with pkgs; [
     colima
-    docker
+    docker_29
     docker-compose
     docker-credential-helpers
     docker-buildx

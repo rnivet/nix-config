@@ -15,7 +15,6 @@
     pkgs.jq
     pkgs.lazydocker
     pkgs-unstable.llmfit
-    pkgs.mactop
     pkgs.ngrok
     pkgs.poppler-utils
     pkgs.ripgrep

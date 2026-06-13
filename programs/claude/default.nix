@@ -90,7 +90,7 @@ in {
         ];
       };
     };
-    memory.text = ''
+    context = ''
       # Global Instructions
 
       ## Shell

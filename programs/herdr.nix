@@ -1,0 +1,17 @@
+{...}: {
+  home.file.".config/herdr/config.toml".text = ''
+    [theme]
+    name = "tokyo-night"
+
+    [keys]
+    new_tab = "alt+t"
+    zoom = "alt+f"
+    next_tab = "alt+right"
+    previous_tab = "alt+left"
+    navigate_workspace_up = "cmd+up"
+    navigate_workspace_down = "cmd+down"
+
+    [experimental]
+    kitty_graphics = true
+  '';
+}

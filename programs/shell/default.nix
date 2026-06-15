@@ -12,31 +12,10 @@
       llt = "eza -l -snew";
     };
     initContent = ''
-      # Auto-start zellij only in Ghostty
-      if [[ "$TERM_PROGRAM" == "ghostty" ]]; then
-        ZELLIJ_AUTO_ATTACH=true eval "$(zellij setup --generate-auto-start zsh)"
+      # Auto-start herdr only in Ghostty, skip if already inside a herdr session
+      if [[ "$TERM_PROGRAM" == "ghostty" && -z "$HERDR_PANE_ID" ]]; then
+        exec herdr
       fi
-
-      # Update zellij tab name automatically
-      zellij_tab_name_update() {
-        if [[ -n $ZELLIJ ]]; then
-          tab_name=""
-          if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-            tab_name+=$(basename "$(git rev-parse --show-toplevel)")/
-            tab_name=''${tab_name%/}
-          else
-            tab_name=$PWD
-            if [[ $tab_name == $HOME ]]; then
-              tab_name="~"
-            else
-              tab_name=''${tab_name##*/}
-            fi
-          fi
-          command nohup zellij action rename-tab $tab_name >/dev/null 2>&1
-        fi
-      }
-      zellij_tab_name_update
-      chpwd_functions+=(zellij_tab_name_update)
 
       # Update cmux workspace name to git repo name on directory change
       cmux_workspace_name_update() {

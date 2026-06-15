@@ -10,7 +10,7 @@
     settings = {
       term = "xterm-256color";
       theme = "TokyoNight Moon";
-      #macos-option-as-alt = "left";
+      macos-option-as-alt = "left";
       copy-on-select = "clipboard";
       font-family = "MesloLGS Nerd Font Mono";
       font-size = 14.5;
@@ -21,6 +21,8 @@
         "alt+t=unbind"
         "alt+arrow_left=unbind"
         "alt+arrow_right=unbind"
+        "super+up=unbind"
+        "super+down=unbind"
       ];
     };
   };

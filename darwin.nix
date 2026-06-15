@@ -108,6 +108,7 @@
     brews =
       [
         "ansible-language-server"
+	"herdr"
         "mole"
       ]
       ++ (hostConf.homebrew_extras.brews or []);

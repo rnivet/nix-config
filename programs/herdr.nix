@@ -16,6 +16,9 @@
     navigate_workspace_up = "cmd+up"
     navigate_workspace_down = "cmd+down"
 
+    [ui.toast]
+    delivery = "system"
+
     [experimental]
     kitty_graphics = true
   '';

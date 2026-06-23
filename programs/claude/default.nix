@@ -3,6 +3,7 @@
   pkgs-unstable,
   ...
 }: let
+  herdrAgentStateHook = pkgs.writeShellScript "herdr-agent-state" (builtins.readFile ./herdr-agent-state.sh);
   cmuxNotifyHook = pkgs.writeShellScript "cmux-notify" ''
     EVENT=$(cat)
     EVENT_TYPE=$(printf '%s' "$EVENT" | ${pkgs.jq}/bin/jq -r '.hook_event_name')
@@ -65,6 +66,28 @@ in {
             ];
           }
         ];
+        SessionStart = [
+          {
+            hooks = [
+              {
+                type = "command";
+                command = "${herdrAgentStateHook} session";
+                async = true;
+              }
+            ];
+          }
+        ];
+        PreToolUse = [
+          {
+            hooks = [
+              {
+                type = "command";
+                command = "${herdrAgentStateHook} session";
+                async = true;
+              }
+            ];
+          }
+        ];
       };
       permissions = {
         defaultMode = "auto";
@@ -111,5 +134,9 @@ in {
 
   home.file = {
     ".config/ccstatusline/settings.json".source = ./ccstatusline.json;
+    ".claude/hooks/herdr-agent-state.sh" = {
+      source = herdrAgentStateHook;
+      executable = true;
+    };
   };
 }

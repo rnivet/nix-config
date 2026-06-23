@@ -103,15 +103,12 @@
       cleanup = "uninstall";
     };
     taps =
-      [
-        "modem-dev/tap"
-      ]
+      []
       ++ (hostConf.homebrew_extras.taps or []);
     brews =
       [
         "ansible-language-server"
         "herdr"
-        "modem-dev/tap/hunk"
         "mole"
       ]
       ++ (hostConf.homebrew_extras.brews or []);

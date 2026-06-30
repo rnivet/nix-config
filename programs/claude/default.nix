@@ -42,7 +42,7 @@ in {
       };
       spinnerTipsEnabled = false;
       tui = "fullscreen";
-      model = "opusplan";
+      model = "claude-opus-4-8";
       effortLevel = "high";
       hooks = {
         Notification = [

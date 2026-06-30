@@ -41,6 +41,7 @@ in {
         "pr" = "";
       };
       spinnerTipsEnabled = false;
+      tui = "fullscreen";
       model = "opusplan";
       effortLevel = "high";
       hooks = {
@@ -123,6 +124,15 @@ in {
       ## Git
 
       NEVER commit changes yourself unless I explicitely ask you to. I'm using git diff to review your work before commiting
+
+      ## Workflow
+
+      NEVER make changes immediately, even in auto-mode. Every task follows this sequence:
+      1. Analyze and assess the problem
+      2. Propose the changes you intend to make
+      3. Wait for explicit acknowledgment before proceeding
+
+      Only proceed to making changes once I have confirmed (e.g. "yes", "go ahead", "looks good", or similar). If I ask a follow-up question or request adjustments, update the proposal and wait again.
     '';
   };
 

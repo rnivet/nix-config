@@ -17,20 +17,7 @@
         exec herdr
       fi
 
-      # Update cmux workspace name to git repo name on directory change
-      cmux_workspace_name_update() {
-        if [[ -n $CMUX_WORKSPACE_ID ]]; then
-          if git rev-parse --is-inside-work-tree >/dev/null 2>&1; then
-            local repo_name
-            repo_name=$(basename "$(git rev-parse --show-toplevel)")
-            cmux workspace-action --action rename --title "$repo_name" >/dev/null 2>&1
-          else
-            cmux workspace-action --action clear-name >/dev/null 2>&1
-          fi
-        fi
-      }
-      cmux_workspace_name_update
-      chpwd_functions+=(cmux_workspace_name_update)
+
     '';
     prezto = {
       enable = true;

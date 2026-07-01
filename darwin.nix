@@ -115,7 +115,6 @@
     casks =
       [
         "claude"
-        "cmux"
         "firefox"
         "gitbutler"
         "google-chrome"

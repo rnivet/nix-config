@@ -2,9 +2,7 @@
   pkgs,
   pkgs-unstable,
   ...
-}: let
-  herdrAgentStateHook = pkgs.writeShellScript "herdr-agent-state" (builtins.readFile ./herdr-agent-state.sh);
-in {
+}: {
   programs.claude-code = {
     enable = true;
     package = pkgs-unstable.claude-code;
@@ -36,7 +34,7 @@ in {
             hooks = [
               {
                 type = "command";
-                command = "${herdrAgentStateHook} session";
+                command = "$HOME/.claude/hooks/herdr-agent-state.sh session";
                 async = true;
               }
             ];
@@ -47,7 +45,7 @@ in {
             hooks = [
               {
                 type = "command";
-                command = "${herdrAgentStateHook} session";
+                command = "$HOME/.claude/hooks/herdr-agent-state.sh session";
                 async = true;
               }
             ];
@@ -108,9 +106,5 @@ in {
 
   home.file = {
     ".config/ccstatusline/settings.json".source = ./ccstatusline.json;
-    ".claude/hooks/herdr-agent-state.sh" = {
-      source = herdrAgentStateHook;
-      executable = true;
-    };
   };
 }

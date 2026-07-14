@@ -10,6 +10,8 @@
     shellAliases = {
       ld = "lazydocker";
       llt = "eza -l -snew";
+      vi = "nvim";
+      vim = "nvim";
     };
     initContent = ''
       # Auto-start herdr only in Ghostty, skip if already inside a herdr session

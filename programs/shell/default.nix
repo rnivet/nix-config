@@ -16,7 +16,21 @@
     initContent = ''
       # Auto-start herdr only in Ghostty, skip if already inside a herdr session
       if [[ "$TERM_PROGRAM" == "ghostty" && -z "$HERDR_PANE_ID" ]]; then
-        exec herdr
+        # A herdr update can bump the client<->server protocol. If a stale
+        # server from before the update is still running, stop it so a fresh,
+        # compatible one gets spawned instead of the client failing to connect.
+        if herdr status 2>/dev/null | grep -q 'compatible: no'; then
+          print -P "%F{yellow}herdr: stale server (protocol mismatch), restarting…%f"
+          herdr server stop 2>/dev/null
+        fi
+
+        # Don't exec unconditionally: if herdr fails to start for any reason,
+        # fall back to a normal shell instead of the window silently closing.
+        if herdr; then
+          exit          # normal quit → close the window as before
+        else
+          print -P "%F{red}herdr failed to start (exit $?); staying in this shell.%f"
+        fi
       fi
 
 

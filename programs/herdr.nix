@@ -1,4 +1,8 @@
 {...}: {
+  home.file.".config/herdr/plugins/config/herdr-focus-notify/.env".text = ''
+    HERDR_FOCUS_NOTIFY_ACTIVATE_APP=Ghostty
+  '';
+
   home.file.".config/herdr/config.toml".text = ''
     [theme]
     name = "tokyo-night"

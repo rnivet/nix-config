@@ -103,13 +103,16 @@
       cleanup = "uninstall";
     };
     taps =
-      []
+      [
+        "vjeantet/tap"
+      ]
       ++ (hostConf.homebrew_extras.taps or []);
     brews =
       [
         "ansible-language-server"
         "herdr"
         "mole"
+        "vjeantet/tap/alerter"
       ]
       ++ (hostConf.homebrew_extras.brews or []);
     casks =

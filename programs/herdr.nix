@@ -23,6 +23,9 @@
     [ui.toast]
     delivery = "system"
 
+    [ui.sidebar.spaces]
+    row_gap = 1
+
     [experimental]
     kitty_graphics = true
   '';

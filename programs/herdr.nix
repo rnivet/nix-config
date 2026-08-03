@@ -24,7 +24,7 @@
     agent_panel_sort = "priority"
 
     [ui.toast]
-    delivery = "system"
+    delivery = "off"
 
     [ui.sidebar.spaces]
     row_gap = 1

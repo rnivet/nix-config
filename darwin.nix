@@ -24,7 +24,7 @@
   environment.systemPackages =
     [
       agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
-      pkgs-unstable.obsidian
+      pkgs.obsidian
       pkgs-unstable.slack
     ]
     ++ (hostConf.systemPackages_extras or []);

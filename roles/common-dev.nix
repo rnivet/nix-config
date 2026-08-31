@@ -2,7 +2,6 @@
   ../programs/shell
   ../programs/neovim
   ../programs/git.nix
-  ../programs/hunk.nix
   ../programs/github.nix
   ../programs/cmdline-tools.nix
   ../programs/opencode

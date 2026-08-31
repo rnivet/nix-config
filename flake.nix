@@ -24,11 +24,6 @@
       url = "github:ryantm/agenix";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-
-    hunk = {
-      url = "github:modem-dev/hunk";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
   };
 
   outputs = {
@@ -39,7 +34,6 @@
     nix-homebrew,
     home-manager,
     agenix,
-    hunk,
     ...
   }: {
     # Build darwin flake using:
@@ -68,7 +62,6 @@
             users.remi = {
               imports = [
                 ./home.nix
-                hunk.homeManagerModules.default
               ];
             };
             backupFileExtension = "before-nix";
@@ -120,7 +113,6 @@
             users.remi = {
               imports = [
                 ./home.nix
-                hunk.homeManagerModules.default
               ];
             };
             backupFileExtension = "before-nix";
@@ -172,7 +164,6 @@
             users.remi = {
               imports = [
                 ./home.nix
-                hunk.homeManagerModules.default
               ];
             };
             backupFileExtension = "before-nix";

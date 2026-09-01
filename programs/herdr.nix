@@ -19,6 +19,11 @@
     previous_tab = "alt+left"
     navigate_workspace_up = "cmd+up"
     navigate_workspace_down = "cmd+down"
+    open_worktree = "alt+g"
+    remove_worktree = "alt+shift+g"
+
+    [worktrees]
+    directory = "~/projects"
 
     [ui]
     agent_panel_sort = "priority"

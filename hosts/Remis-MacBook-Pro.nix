@@ -35,6 +35,7 @@
     import ../roles/common-desktop.nix
     ++ import ../roles/common-dev.nix
     ++ [../programs/kube.nix]
+    ++ [../programs/gcloud.nix]
     ++ [../programs/opencode]
     ++ [../programs/nats.nix];
 }

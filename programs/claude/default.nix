@@ -28,6 +28,7 @@
       tui = "fullscreen";
       model = "opus";
       effortLevel = "high";
+      outputStyle = "Concise";
       hooks = {
         SessionStart = [
           {

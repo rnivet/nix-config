@@ -4,6 +4,8 @@
   '';
 
   home.file.".config/herdr/config.toml".text = ''
+    onboarding = false
+
     [theme]
     name = "tokyo-night"
 
@@ -27,6 +29,7 @@
 
     [ui]
     agent_panel_sort = "priority"
+    show_agent_labels_on_pane_borders = true
 
     [ui.toast]
     delivery = "off"

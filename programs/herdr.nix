@@ -1,4 +1,20 @@
 {...}: {
+  # herdr-terminal-notifier (dot/herdr-terminal-notifier).
+  # Config layer 3: $HERDR_PLUGIN_CONFIG_DIR/config.env, keyed on the plugin id.
+  home.file.".config/herdr/plugins/config/dot.terminal-notifier/config.env".text = ''
+    # Only Ghostty hosts herdr, so the frontmost check never mistakes another
+    # app for the terminal. Static whitelist, never learned from what is
+    # frontmost when an event fires.
+    TERMINAL_APP_IDS="com.mitchellh.ghostty"
+
+    # herdr 0.9.0 split pane focus from workspace focus: `agent focus` alone
+    # leaves the active workspace untouched, so the click has to switch the
+    # space itself. CLICK_COMMAND is prefixed with the resolved herdr binary
+    # and run through a shell, hence the chain. Absolute paths: a click is
+    # launched by the notifier app with a bare PATH.
+    CLICK_COMMAND="agent focus {pane} && /opt/homebrew/bin/herdr workspace focus {workspace} && /usr/bin/open -a Ghostty"
+  '';
+
   home.file.".config/herdr/config.toml".text = ''
     onboarding = false
 

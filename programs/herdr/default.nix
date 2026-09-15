@@ -1,4 +1,10 @@
 {...}: {
+  # dot.default-tabs (./plugins/default-tabs): lays claude/git/shell tabs into
+  # every new workspace. The plugin lives in this repo rather than in the store
+  # so the linked path stays stable across rebuilds; link it once per machine:
+  #   herdr plugin link ~/.config/nix/programs/herdr/plugins/default-tabs
+  # The tab template itself is ./plugins/default-tabs/tabs.conf.
+
   # herdr-terminal-notifier (dot/herdr-terminal-notifier).
   # Config layer 3: $HERDR_PLUGIN_CONFIG_DIR/config.env, keyed on the plugin id.
   home.file.".config/herdr/plugins/config/dot.terminal-notifier/config.env".text = ''
@@ -35,6 +41,18 @@
     navigate_workspace_down = "cmd+down"
     open_worktree = "alt+g"
     remove_worktree = "alt+shift+g"
+
+    # Pick the directory first, then open a space on it: herdr's own
+    # new_workspace (prefix+shift+n) always inherits the current folder, which
+    # is rarely the one the new space is for. Kept as a separate binding so
+    # both paths stay available.
+    [[keys.command]]
+    key = "alt+n"
+    type = "popup"
+    command = "~/.config/nix/programs/herdr/plugins/default-tabs/new-space.sh"
+    width = "70%"
+    height = "60%"
+    description = "new space in a picked directory"
 
     [worktrees]
     directory = "~/projects"

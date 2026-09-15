@@ -1,0 +1,21 @@
+id = "dot.default-tabs"
+name = "Default tabs"
+version = "0.1.0"
+min_herdr_version = "0.9.0"
+description = "Lay out a fresh workspace with the default tab template"
+platforms = ["macos", "linux"]
+
+# Fires for every workspace herdr creates. apply.sh is a no-op unless the
+# workspace is still untouched (one tab, one pane, placeholder label), so a
+# stray event can never rearrange a workspace that is already in use.
+[[events]]
+on = "workspace.created"
+command = ["bash", "apply.sh"]
+
+# Manual fallback: works on any still-empty workspace, e.g. when the event
+# does not reach the plugin, or after closing every tab but one.
+[[actions]]
+id = "apply"
+title = "Apply default tabs"
+contexts = ["workspace"]
+command = ["bash", "apply.sh"]

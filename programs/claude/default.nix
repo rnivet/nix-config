@@ -16,9 +16,12 @@
       };
       enabledPlugins = {
         "frontend-design@claude-plugins-official" = true;
-        "code-simplifier@claude-plugins-official" = true;
         "code-review@claude-plugins-official" = true;
         "skill-creator@claude-plugins-official" = true;
+        # Supersedes the standalone code-simplifier plugin: it ships the same
+        # agent, plus code-reviewer, comment-analyzer, pr-test-analyzer,
+        # silent-failure-hunter, type-design-analyzer and /review-pr.
+        "pr-review-toolkit@claude-plugins-official" = true;
       };
       attribution = {
         "commit" = "";

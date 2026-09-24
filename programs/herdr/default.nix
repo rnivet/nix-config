@@ -31,6 +31,9 @@
     subtext0 = "#DCE1F9"
     overlay0 = "#DCE1F9"
     overlay1 = "#DCE1F9"
+    # The sidebar inherits Ghostty's TokyoNight Moon background (#222436),
+    # which the theme's own active_row_bg (#232636) is nearly identical to.
+    active_row_bg = "#3b4261"
 
     [keys]
     new_tab = "alt+t"

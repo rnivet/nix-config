@@ -1,4 +1,10 @@
-{pkgs, ...}: {
+{
+  config,
+  pkgs,
+  ...
+}: let
+  ompConfig = "${config.xdg.configHome}/oh-my-posh/config.yml";
+in {
   home.packages = [
     pkgs.oh-my-posh
     pkgs.nerd-fonts.meslo-lg
@@ -55,10 +61,15 @@
     };
   };
 
+  # Stable path + POSH_CONFIG: oh-my-posh wipes its session cache when its
+  # store path changes, and falls back to the default theme without these.
+  xdg.configFile."oh-my-posh/config.yml".source = ./oh-my-posh.yml;
+  home.sessionVariables.POSH_CONFIG = ompConfig;
+
   programs.oh-my-posh = {
     enable = true;
     enableZshIntegration = true;
-    configFile = ./oh-my-posh.yml;
+    configFile = ompConfig;
   };
 
   programs.atuin = {

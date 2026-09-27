@@ -20,6 +20,11 @@
 
 This configuration uses **ragenix** (not agenix) for managing secrets with age encryption.
 
+## Package Sources
+
+- Prefer nixpkgs for all packages (`home.packages` via a `programs/*.nix` module, or `environment.systemPackages`)
+- Use Homebrew (`homebrew_extras` in `hosts/*.nix`) only as a fallback when a package is not available in nixpkgs or doesn't build on darwin
+
 ## Code Style Guidelines
 
 ### Nix Files

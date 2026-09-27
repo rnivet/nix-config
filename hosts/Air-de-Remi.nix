@@ -52,5 +52,6 @@
   roles =
     import ../roles/common-desktop.nix
     ++ import ../roles/common-dev.nix
-    ++ import ../roles/dev-ansible.nix;
+    ++ import ../roles/dev-ansible.nix
+    ++ [../programs/xcodegen.nix];
 }

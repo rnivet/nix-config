@@ -54,7 +54,6 @@ in {
         "utility"
         "completion"
         "prompt"
-        "ssh"
         "docker"
       ];
       terminal.autoTitle = null;

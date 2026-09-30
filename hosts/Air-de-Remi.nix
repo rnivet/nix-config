@@ -24,7 +24,6 @@
       "google-drive"
       "protonvpn"
       "telegram"
-      "todoist-app"
       "cyberduck"
       "balenaetcher"
     ];

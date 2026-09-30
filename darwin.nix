@@ -119,7 +119,6 @@
       [
         "claude"
         "firefox"
-        "gitbutler"
         "google-chrome"
         "onlyoffice"
         "qobuz"

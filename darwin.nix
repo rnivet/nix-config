@@ -121,6 +121,7 @@
         "firefox"
         "google-chrome"
         "onlyoffice"
+        "qlmarkdown"
         "qobuz"
         "zen"
       ]

@@ -31,6 +31,11 @@
       tui = "fullscreen";
       model = "opus";
       effortLevel = "high";
+      # effortLevel alone gets overridden by the launch-time Opus default;
+      # the env var takes precedence.
+      env = {
+        CLAUDE_CODE_EFFORT_LEVEL = "high";
+      };
       outputStyle = "Concise";
       hooks = {
         SessionStart = [

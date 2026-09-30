@@ -6,12 +6,9 @@ return {
   opts = {
     pipe_table = {
       preset = "round",   -- rounded corners; 'heavy'/'double'/'none' also available
-      cell = "padded",    -- pad columns to equal visual width (the default)
-    },
-    win_options = {
-      -- autocmds.lua turns wrap on for markdown, which folds wide tables
-      -- mid-row. Off while rendered, back on in insert mode for prose.
-      wrap = { default = true, rendered = false },
+      -- autocmds.lua turns wrap on for markdown; trimming keeps tables narrow
+      -- so fewer rows fold mid-line
+      cell = "trimmed",
     },
   },
 }

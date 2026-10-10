@@ -133,6 +133,12 @@
     secrets = hostConf.age_secrets or {};
   };
 
+  # Load ssh keys stored in the macOS Keychain into ssh-agent at login
+  launchd.user.agents.ssh-add-keychain.serviceConfig = {
+    ProgramArguments = ["/usr/bin/ssh-add" "--apple-load-keychain"];
+    RunAtLoad = true;
+  };
+
   services.dnsmasq = {
     enable = true;
     addresses = hostConf.dns_addresses;

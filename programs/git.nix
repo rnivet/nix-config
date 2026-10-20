@@ -26,12 +26,15 @@
         editPreset = "nvim";
       };
       git = {
-        autoFetch = false;
+        autoFetch = true;
+        autoForwardBranches = "allBranches";
         mainBranches = [
           "main"
-          "master"
           "develop"
         ];
+      };
+      refresher = {
+        fetchInterval = 60;
       };
     };
   };

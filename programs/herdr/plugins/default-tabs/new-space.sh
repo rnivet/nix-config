@@ -32,6 +32,8 @@ PROJECTS="${HERDR_PROJECTS_DIR:-$HOME/projects}"
 # history, then whatever else you actually visit.
 candidates() {
   [ -d "$PROJECTS" ] && find "$PROJECTS" -mindepth 1 -maxdepth 1 -type d -print 2>/dev/null | sort
+  # Feature spaces (see programs/feature-ws) live one level further down.
+  [ -d "$PROJECTS/features" ] && find "$PROJECTS/features" -mindepth 1 -maxdepth 1 -type d -print 2>/dev/null | sort
   [ -n "$ZOXIDE" ] && "$ZOXIDE" query --list 2>/dev/null
   # Never fail the pipeline just because one source is missing.
   return 0

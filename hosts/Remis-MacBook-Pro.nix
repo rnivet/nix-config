@@ -38,5 +38,6 @@
     ++ [../programs/gcloud.nix]
     ++ [../programs/opencode]
     ++ [../programs/nats.nix]
-    ++ [../programs/claude/oversoc.nix];
+    ++ [../programs/claude/oversoc.nix]
+    ++ [../programs/feature-ws];
 }

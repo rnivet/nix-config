@@ -27,7 +27,7 @@
       };
       git = {
         autoFetch = true;
-        autoForwardBranches = "allBranches";
+        autoForwardBranches = "none";
         mainBranches = [
           "main"
           "develop"

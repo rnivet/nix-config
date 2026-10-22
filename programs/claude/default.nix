@@ -92,6 +92,10 @@
 
       Always use `/usr/bin/make` instead of `make` in Bash commands. The user's zsh has `make` defined as an autoloaded function for tab-completion that shadows the binary and can fail in non-interactive subshells.
 
+      ## Language
+
+      Always talk to me in English, even when I write in French or ask you to produce documents, plans or artifacts in French. Only the deliverable itself is in French; everything you say to me in the conversation stays in English.
+
       ## Git
 
       NEVER commit changes yourself unless I explicitely ask you to. I'm using git diff to review your work before commiting

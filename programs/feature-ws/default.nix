@@ -41,7 +41,7 @@ in {
       1. Read `FEATURE.md` and `feature-ws ls <name>` to see what is already set up.
       2. If the goal is not written down yet, ask for it (or the Jira ticket) and record it in `FEATURE.md`.
       3. Using the repo map, propose the repos the feature needs, with one line on why each, and wait for confirmation like any other change.
-      4. Add them with `feature-ws add <repo>...` from the feature folder (connectors: `feature-ws add connectors/<name>`). It fetches, branches off origin's default branch (or reuses an existing feature branch) and copies ignored `.env*` files.
+      4. Add them with `feature-ws add <repo>...` from the feature folder (connectors: `feature-ws add connectors/<name>`). It fetches, branches off the feature's base branch (`develop` unless another was chosen at creation; repos without it use origin's default branch), or reuses an existing feature branch, and copies ignored `.env*` files.
       5. Keep the `## Repos` section of `FEATURE.md` up to date with each repo's role in the feature.
 
       Rules:

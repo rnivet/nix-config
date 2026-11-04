@@ -5,15 +5,23 @@
 
 PROJECTS="${FEATURE_WS_PROJECTS:-$HOME/projects}"
 FEATURES_DIR="${FEATURE_WS_DIR:-$PROJECTS/features}"
+DEFAULT_BASE=develop
+# Per-feature file holding the branch new worktrees are based on.
+BASE_FILE=.feature-ws-base
 
 usage() {
   cat <<EOF
 usage: feature-ws <command> [args]
 
-  new [name] [repo...]  create $FEATURES_DIR/<name>, add the repos, and open
-                        a herdr workspace on it (prompts for the name if omitted)
+  new [-b|--base <branch>] [name] [repo...]
+                        create $FEATURES_DIR/<name>, add the repos, and open
+                        a herdr workspace on it (prompts for the name and base
+                        if the name is omitted); new branches start from
+                        origin/<branch> (default $DEFAULT_BASE), or origin's
+                        default branch in repos that lack it
   add <repo>...         from inside a feature folder, add worktrees of
-                        $PROJECTS/<repo> on the feature branch
+                        $PROJECTS/<repo> on the feature branch, based on the
+                        branch chosen at creation
                         (connectors use their sub-path, e.g. connectors/intune)
   ls [name]             list features, or the worktrees of one feature
   rm <name>             remove a feature's worktrees and folder; refuses if any
@@ -46,6 +54,13 @@ feature_worktrees() {
     sed "s|^$root/||; s|/\.git\$||" | sort
 }
 
+# Base branch of a feature; features created before it was recorded use the default.
+feature_base() {
+  local base=""
+  [ -f "$1/$BASE_FILE" ] && base=$(head -n1 "$1/$BASE_FILE")
+  printf '%s\n' "${base:-$DEFAULT_BASE}"
+}
+
 default_branch() {
   local src="$1" ref
   if ref=$(git -C "$src" symbolic-ref --quiet --short refs/remotes/origin/HEAD 2>/dev/null); then
@@ -75,8 +90,9 @@ copy_env_files() {
 
 add_repo() {
   local root="$1" repo="${2%/}"
-  local name src dest base
+  local name src dest base want
   name=$(basename "$root")
+  want=$(feature_base "$root")
   src="$PROJECTS/$repo"
   dest="$root/$repo"
 
@@ -97,18 +113,37 @@ add_repo() {
     git -C "$src" worktree add "$dest" "$name"
   elif git -C "$src" show-ref --verify --quiet "refs/remotes/origin/$name"; then
     git -C "$src" worktree add --track -b "$name" "$dest" "origin/$name"
+  elif git -C "$src" show-ref --verify --quiet "refs/remotes/origin/$want"; then
+    git -C "$src" worktree add --no-track -b "$name" "$dest" "origin/$want"
   else
-    base=$(default_branch "$src") || die "$repo: cannot find origin's default branch"
+    base=$(default_branch "$src") || die "$repo: no origin/$want and cannot find origin's default branch"
+    say "$repo: no origin/$want, branching off $base"
     git -C "$src" worktree add --no-track -b "$name" "$dest" "$base"
   fi
   copy_env_files "$src" "$dest"
 }
 
 cmd_new() {
+  local base=""
+  while [ $# -gt 0 ]; do
+    case "$1" in
+      -b | --base)
+        [ $# -ge 2 ] || die "$1 needs a branch name"
+        base="$2"
+        shift 2
+        ;;
+      --base=*) base="${1#--base=}"; shift ;;
+      --) shift; break ;;
+      -*) die "unknown option $1" ;;
+      *) break ;;
+    esac
+  done
+
   local name="${1:-}"
   if [ -z "$name" ]; then
     read -r -p 'feature name (e.g. OVW-612-asset-tags): ' name
     [ -n "$name" ] || exit 0
+    [ -n "$base" ] || read -r -p "base branch [$DEFAULT_BASE]: " base
   else
     shift
   fi
@@ -116,8 +151,16 @@ cmd_new() {
   case "$name" in */*) die "'$name' must not contain '/'" ;; esac
 
   local root="$FEATURES_DIR/$name"
+  if [ -n "$base" ]; then
+    base="${base#origin/}"
+    git check-ref-format --branch "$base" >/dev/null 2>&1 || die "'$base' is not a valid branch name"
+    if [ -f "$root/$BASE_FILE" ] && [ "$(feature_base "$root")" != "$base" ]; then
+      die "$name already exists with base $(feature_base "$root")"
+    fi
+  fi
   mkdir -p "$root"
   [ -e "$root/FEATURE.md" ] || printf '# %s\n\n## Goal\n\n## Repos\n\n## Notes\n' "$name" >"$root/FEATURE.md"
+  [ -e "$root/$BASE_FILE" ] || printf '%s\n' "${base:-$DEFAULT_BASE}" >"$root/$BASE_FILE"
 
   local repo
   for repo in "$@"; do add_repo "$root" "$repo"; done
@@ -174,7 +217,7 @@ cmd_rm() {
     git -C "$root/$wt" worktree remove "$root/$wt" || die "could not remove $wt"
     say "removed $wt (branch $1 kept)"
   done
-  rm -f "$root/FEATURE.md"
+  rm -f "$root/FEATURE.md" "$root/$BASE_FILE"
   find "$root" -depth -type d -empty -delete
   [ ! -e "$root" ] || die "$root still has files, left in place"
 }

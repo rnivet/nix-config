@@ -26,6 +26,7 @@
       "telegram"
       "cyberduck"
       "balenaetcher"
+      "herdr-app"
     ];
   };
   age_secrets = {

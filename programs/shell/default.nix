@@ -21,7 +21,9 @@ in {
     };
     initContent = ''
       # Auto-start herdr only in Ghostty, skip if already inside a herdr session
-      if [[ "$TERM_PROGRAM" == "ghostty" && -z "$HERDR_PANE_ID" ]]; then
+      # or in a Herdr.app pane (it embeds libghostty, so TERM_PROGRAM is ghostty too)
+      if [[ "$TERM_PROGRAM" == "ghostty" && -z "$HERDR_PANE_ID" \
+            && "$__CFBundleIdentifier" != "dev.herdr.app" ]]; then
         # A herdr update can bump the client<->server protocol. If a stale
         # server from before the update is still running, stop it so a fresh,
         # compatible one gets spawned instead of the client failing to connect.

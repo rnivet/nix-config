@@ -15,13 +15,15 @@ usage: feature-ws <command> [args]
 
   new [-b|--base <branch>] [name] [repo...]
                         create $FEATURES_DIR/<name>, add the repos, and open
-                        a herdr workspace on it (prompts for the name and base
-                        if the name is omitted); new branches start from
+                        a herdr workspace on it with a lazygit tab per repo
+                        (prompts for the name and base if the name is
+                        omitted); new branches start from
                         origin/<branch> (default $DEFAULT_BASE), or origin's
                         default branch in repos that lack it
   add <repo>...         from inside a feature folder, add worktrees of
                         $PROJECTS/<repo> on the feature branch, based on the
-                        branch chosen at creation
+                        branch chosen at creation, and add any missing repo
+                        tab to the feature's herdr workspace
                         (connectors use their sub-path, e.g. connectors/intune)
   ls [name]             list features, or the worktrees of one feature
   rm <name>             remove a feature's worktrees and folder; refuses if any
@@ -123,6 +125,86 @@ add_repo() {
   copy_env_files "$src" "$dest"
 }
 
+# ---------------------------------------------------------------------------
+# herdr: one lazygit tab per worktree in the feature's workspace. All of it is
+# best effort; without herdr, or without a workspace on the feature, the
+# worktrees are simply left without tabs.
+# ---------------------------------------------------------------------------
+
+herdr_bin() {
+  local bin="${HERDR_BIN_PATH:-$(command -v herdr || true)}"
+  [ -n "$bin" ] || bin=/opt/homebrew/bin/herdr
+  [ -x "$bin" ] || return 1
+  printf '%s\n' "$bin"
+}
+
+# Workspace showing a feature: the caller's own one when it sits in the
+# feature, else the first one with a pane in it.
+feature_space() {
+  local herdr="$1" root="$2"
+  { "$herdr" pane list 2>/dev/null || true; } |
+    jq -r --arg root "$root" --arg own "${HERDR_WORKSPACE_ID:-}" '
+      [.result.panes[]? | select((.cwd // "") as $c | $c == $root or ($c | startswith($root + "/")))
+       | .workspace_id] | unique as $ws
+      | if ($ws | any(. == $own)) then $own else ($ws[0] // empty) end' 2>/dev/null || true
+}
+
+# The default-tabs plugin only lays out a workspace that still has its single,
+# numbered placeholder tab, so let it finish before adding tabs: wait for the
+# placeholder to be renamed, then for the tab count to settle. Gives up after
+# 10s, e.g. when the plugin is not linked.
+wait_for_layout() {
+  local herdr="$1" ws="$2" state count label last="" stable=0
+  for _ in $(seq 40); do
+    state=$({ "$herdr" tab list --workspace "$ws" 2>/dev/null || true; } |
+      jq -r --arg ws "$ws" '[.result.tabs[]? | select(.workspace_id == $ws)] | sort_by(.number)
+        | "\(length) \(.[0].label // "")"' 2>/dev/null || true)
+    read -r count label <<<"$state" || true
+    if [ -n "$label" ] && ! [[ "$label" =~ ^[0-9]+$ ]]; then
+      if [ "$count" = "$last" ]; then
+        stable=$((stable + 1))
+        [ "$stable" -lt 3 ] || return 0
+      else
+        stable=0
+      fi
+      last="$count"
+    fi
+    sleep 0.25
+  done
+  say "default tabs did not settle, adding repo tabs anyway"
+}
+
+# Add a tab running lazygit for every worktree that has none yet, matched by
+# label, so this can run again after each `add`.
+sync_tabs() {
+  local root="$1" ws="${2:-}" herdr labels wt pane
+  herdr=$(herdr_bin) || return 0
+  root=$(cd "$root" && pwd -P)
+  [ -n "$ws" ] || ws=$(feature_space "$herdr" "$root")
+  [ -n "$ws" ] || return 0
+  labels=$({ "$herdr" tab list --workspace "$ws" 2>/dev/null || true; } |
+    jq -r --arg ws "$ws" '.result.tabs[]? | select(.workspace_id == $ws) | .label' 2>/dev/null || true)
+
+  # Lay all tabs out first, then start lazygit once each shell has a prompt.
+  local panes=()
+  while IFS= read -r wt; do
+    grep -qxF -- "$wt" <<<"$labels" && continue
+    pane=$({ "$herdr" tab create --workspace "$ws" --label "$wt" --cwd "$root/$wt" --no-focus 2>/dev/null || true; } |
+      jq -r '.result.root_pane.pane_id // empty' 2>/dev/null || true)
+    if [ -z "$pane" ]; then
+      say "could not open a herdr tab for $wt"
+      continue
+    fi
+    panes+=("$pane")
+  done < <(feature_worktrees "$root")
+
+  for pane in "${panes[@]}"; do
+    "$herdr" pane wait-output "$pane" --regex '[❯$%#>]' --lines 4 --timeout 5000 >/dev/null 2>&1 || true
+    { "$herdr" pane send-text "$pane" lazygit && "$herdr" pane send-keys "$pane" enter; } >/dev/null 2>&1 ||
+      say "could not start lazygit in $pane"
+  done
+}
+
 cmd_new() {
   local base=""
   while [ $# -gt 0 ]; do
@@ -162,16 +244,24 @@ cmd_new() {
   [ -e "$root/FEATURE.md" ] || printf '# %s\n\n## Goal\n\n## Repos\n\n## Notes\n' "$name" >"$root/FEATURE.md"
   [ -e "$root/$BASE_FILE" ] || printf '%s\n' "${base:-$DEFAULT_BASE}" >"$root/$BASE_FILE"
 
+  root=$(cd "$root" && pwd -P)
+
   local repo
   for repo in "$@"; do add_repo "$root" "$repo"; done
 
-  local herdr="${HERDR_BIN_PATH:-$(command -v herdr || echo /opt/homebrew/bin/herdr)}"
-  if [ -x "$herdr" ]; then
-    "$herdr" workspace create --cwd "$root" --label "$name" --focus >/dev/null 2>&1 ||
-      say "could not open a herdr workspace; $root is ready"
-  else
+  local herdr ws
+  if ! herdr=$(herdr_bin); then
     printf '%s\n' "$root"
+    return
   fi
+  ws=$({ "$herdr" workspace create --cwd "$root" --label "$name" --focus 2>/dev/null || true; } |
+    jq -r '.result.workspace.workspace_id // empty' 2>/dev/null || true)
+  if [ -z "$ws" ]; then
+    say "could not open a herdr workspace; $root is ready"
+    return
+  fi
+  wait_for_layout "$herdr" "$ws"
+  sync_tabs "$root" "$ws"
 }
 
 cmd_add() {
@@ -180,6 +270,7 @@ cmd_add() {
   root=$(feature_root) || die "run this from inside a feature folder under $FEATURES_DIR"
   local repo
   for repo in "$@"; do add_repo "$root" "$repo"; done
+  sync_tabs "$root"
 }
 
 cmd_ls() {

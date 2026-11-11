@@ -112,12 +112,8 @@ git -C "$cwd" rev-parse --is-inside-work-tree >/dev/null 2>&1 && is_git_repo=1
 # ---------------------------------------------------------------------------
 
 run_in_pane() {
-  local pane="$1" command="$2" if_git="$3"
+  local pane="$1" command="$2"
   [ -n "$command" ] || return 0
-  if [ "$if_git" = "1" ] && [ "$is_git_repo" != "1" ]; then
-    log "$cwd is not a git work tree, leaving '$command' unstarted"
-    return 0
-  fi
   # A pane exists before its shell has drawn a prompt; typing into it too early
   # loses the keystrokes. Wait for a prompt, but send anyway on timeout — the
   # shell is usually just slow, not broken.
@@ -125,9 +121,18 @@ run_in_pane() {
   api pane send-text "$pane" "$command" && api pane send-keys "$pane" enter
 }
 
+# Lay every tab out before starting any command: commands wait for a shell
+# prompt, and doing that between tabs would leave the layout half built for
+# seconds, racing anything else that adds tabs (feature-ws, for one).
 applied=0
+pending_panes=()
+pending_commands=()
 for spec in "${TAB_SPECS[@]}"; do
   IFS=$'\x1f' read -r label command if_git <<<"$spec"
+  if [ "$if_git" = "1" ] && [ "$is_git_repo" != "1" ]; then
+    log "$cwd is not a git work tree, skipping tab '$label'"
+    continue
+  fi
 
   if [ "$applied" -eq 0 ]; then
     # The first template tab reuses the workspace's existing tab; creating a
@@ -143,8 +148,13 @@ for spec in "${TAB_SPECS[@]}"; do
     fi
   fi
 
-  run_in_pane "$pane" "$command" "$if_git"
+  pending_panes+=("$pane")
+  pending_commands+=("$command")
   applied=$((applied + 1))
+done
+
+for i in "${!pending_panes[@]}"; do
+  run_in_pane "${pending_panes[$i]}" "${pending_commands[$i]}"
 done
 
 # Creating with --no-focus leaves the active tab wherever it was; make it the

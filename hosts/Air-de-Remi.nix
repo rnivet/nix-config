@@ -27,6 +27,7 @@
       "cyberduck"
       "balenaetcher"
       "herdr-app"
+      "bitwarden"
     ];
   };
   age_secrets = {

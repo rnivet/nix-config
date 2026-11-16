@@ -67,7 +67,7 @@
           "Read(./.env)"
         ];
         ask = [
-          "Bash(git commit *)"
+          "Bash(git push *)"
         ];
         allow = [
           "Bash(ls *)"
@@ -79,6 +79,9 @@
           "Bash(npm run *)"
           "Bash(git diff *)"
           "Bash(git log *)"
+          "Bash(git status *)"
+          "Bash(git show *)"
+          "Bash(git blame *)"
           "Bash(/usr/bin/make *)"
           "mcp__claude_ai_Atlassian__ListAccessibleResources"
           "mcp__claude_ai_Atlassian__getJiraIssue"
@@ -98,7 +101,9 @@
 
       ## Git
 
-      NEVER commit changes yourself unless I explicitely ask you to. I'm using git diff to review your work before commiting
+      You handle git operations yourself (staging, commits, branches, pushes, etc.), but ALWAYS ask me for confirmation before running any command that changes repository state: commit, branch creation/switch/deletion, merge, rebase, reset, stash, tag, push, etc. When proposing a commit, show the files to be staged and the full commit message, matching the repo's existing message style. Read-only commands (status, diff, log, show, blame) need no confirmation.
+
+      Never force-push, rewrite published history, amend pushed commits, or skip hooks (--no-verify) unless I explicitly ask.
 
       ## Workflow
 

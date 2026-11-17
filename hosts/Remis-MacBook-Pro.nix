@@ -37,6 +37,7 @@
     ++ [../programs/kube.nix]
     ++ [../programs/gcloud.nix]
     ++ [../programs/aws.nix]
+    ++ [../programs/gpg.nix]
     ++ [../programs/opencode]
     ++ [../programs/nats.nix]
     ++ [../programs/claude/oversoc.nix]

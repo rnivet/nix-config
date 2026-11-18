@@ -1,7 +1,7 @@
 {pkgs, ...}: {
   home.packages = with pkgs; [
-    python313
-    python313Packages.pytest
+    python314
+    python314Packages.pytest
   ];
 
   programs.poetry = {

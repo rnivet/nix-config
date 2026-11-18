@@ -1,6 +1,6 @@
 {pkgs, ...}: {
   home.packages = [
-    pkgs.python313Packages.huggingface-hub
-    pkgs.python313Packages.mlx
+    pkgs.python314Packages.huggingface-hub
+    pkgs.python314Packages.mlx
   ];
 }

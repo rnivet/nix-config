@@ -27,9 +27,9 @@ in {
     lua-language-server
 
     # Python dev
-    python313
-    python313Packages.pip
-    python313Packages.python-lsp-server
+    python314
+    python314Packages.pip
+    python314Packages.python-lsp-server
     pyright
     black
     ruff

@@ -24,7 +24,6 @@
   environment.systemPackages =
     [
       agenix.packages.${pkgs.stdenv.hostPlatform.system}.default
-      pkgs.obsidian
       pkgs-unstable.slack
     ]
     ++ (hostConf.systemPackages_extras or []);
@@ -120,6 +119,7 @@
         "claude"
         "firefox"
         "google-chrome"
+        "obsidian"
         "onlyoffice"
         "qlmarkdown"
         "qobuz"

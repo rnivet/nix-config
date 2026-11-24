@@ -11,7 +11,9 @@
   homebrew_extras = {
     taps = [];
     brews = [];
-    casks = [];
+    casks = [
+      "bitwarden"
+    ];
   };
   age_secrets = {
     codestral_token = {
